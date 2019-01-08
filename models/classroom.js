@@ -9,4 +9,4 @@ const classroomSchema = new Schema({
 
 const Classroom = mongoose.model("Classroom", classroomSchema);
 
-module.exports = Book;
+module.exports = Classroom;
