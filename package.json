@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "fullstack_classroom",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "A class record app that gives teachers a visual overview of classrooms, attendance, assignments, and grades.",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -18,8 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "jest": "^23.6.0",
     "nodemon": "^1.18.7",
-    "jest": "^22.2.2",
     "supertest": "^3.0.0"
   },
   "dependencies": {
@@ -27,17 +27,18 @@
     "bcrypt": "^2.0.1",
     "config": "^1.29.4",
     "cors": "^2.8.4",
+    "express": "^4.16.3",
     "express-async-errors": "^2.1.0",
     "fawn": "^2.1.5",
+    "if-env": "^1.0.4",
     "joi": "^13.4.0",
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.1.1",
+    "kleur": "^3.0.1",
     "lodash": "^4.17.10",
     "moment": "^2.20.1",
     "mongoose": "^5.0.2",
     "winston": "^2.4.0",
-    "winston-mongodb": "^3.0.0",
-    "express": "^4.16.3",
-    "if-env": "^1.0.4"
+    "winston-mongodb": "^3.0.0"
   }
 }
