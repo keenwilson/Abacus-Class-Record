@@ -1,5 +1,5 @@
 {
-  "name": "fullstack_classroom",
+  "name": "react_fullstack_classroom",
   "version": "1.0.0",
   "description": "A class record app that gives teachers a visual overview of classrooms, attendance, assignments, and grades.",
   "main": "server.js",
@@ -38,6 +38,7 @@
     "lodash": "^4.17.10",
     "moment": "^2.20.1",
     "mongoose": "^5.0.2",
+    "morgan": "^1.9.1",
     "winston": "^2.4.0",
     "winston-mongodb": "^3.0.0"
   }
