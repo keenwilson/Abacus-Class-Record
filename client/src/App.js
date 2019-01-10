@@ -5,14 +5,15 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import auth from "./services/authService";
-import "./App.css";
 import RegisterForm from "./components/registerForm";
 import LoginForm from "./components/loginForm";
 import Logout from "./components/logout";
 import Welcome from "./components/welcome";
+import Classrooms from "./components/classrooms";
 import Navbar from "./components/navBar";
 import NotFound from "./components/notFound";
+import auth from "./services/authService";
+import "./App.css";
 
 class App extends Component {
   state = {};
@@ -23,16 +24,24 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.state;
+
     return (
       <Router>
         <React.Fragment>
-          <Navbar />
+          <Navbar user={user} />
           <main className="container">
             <Switch>
               <Route path="/welcome" component={Welcome} />
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
               <Route path="/logout" component={Logout} />
+              <Route
+                path="/classrooms"
+                render={props => (
+                  <Classrooms {...props} user={this.state.user} />
+                )}
+              />
               <Route path="/not-found" component={NotFound} />
               <Redirect from="/" exact to="/welcome" />
               <Redirect to="/not-found" />
