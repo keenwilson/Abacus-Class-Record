@@ -15,10 +15,12 @@ const attendanceSchema = new mongoose.Schema(
       $type: Schema.Types.ObjectId,
       ref: "Classroom"
     },
-    studentId: {
-      $type: Schema.Types.ObjectId,
-      ref: "Student"
-    }
+    studentsId: [
+      {
+        $type: Schema.Types.ObjectId,
+        ref: "Student"
+      }
+    ]
   },
   { typeKey: "$type" }
 );
