@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const usersRoutes = require("./users");
 const authRoutes = require("./auth");
-const classroomRoutes = require("./classrooms");
+const classroomsRoutes = require("./classrooms");
+const studentsRoutes = require("./students");
+const teachersRoutes = require("./teachers");
 
 // Users routes
 router.use("/users", usersRoutes);
@@ -10,7 +12,13 @@ router.use("/users", usersRoutes);
 router.use("/auth", authRoutes);
 
 // Classrooms Routes
-router.use("/classrooms", classroomRoutes);
+router.use("/classrooms", classroomsRoutes);
+
+// Students Routes
+router.use("/students", studentsRoutes);
+
+// Students Routes
+router.use("/teachers", teachersRoutes);
 
 // For anything else, render the html page
 router.use(function(req, res) {
