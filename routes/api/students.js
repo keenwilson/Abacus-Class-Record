@@ -1,16 +1,16 @@
-const { Student } = require("../../models/student");
+const Student = require("../../models/student");
 const auth = require("../../middleware/auth");
 const express = require("express");
 const router = express.Router();
 
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   const students = await Student.find()
     .select("-__v")
     .sort("lastName");
   res.send(students);
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   let student = new Student({
     firstName: req.body.firstName,
     lastName: req.body.lastName
@@ -20,7 +20,7 @@ router.post("/", auth, async (req, res) => {
   res.send(student);
 });
 
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
   const student = await Student.findByIdAndUpdate(
     req.params.id,
     {
@@ -36,7 +36,7 @@ router.put("/:id", auth, async (req, res) => {
   res.send(student);
 });
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const student = await Student.findByIdAndRemove(req.params.id);
 
   if (!student)

@@ -10,10 +10,13 @@ const classroomSchema = new mongoose.Schema(
       required: true,
       index: true
     },
-    teacherId: Schema.Types.ObjectId,
+    teacherId: {
+      $type: Schema.Types.ObjectId,
+      ref: "Teacher"
+    },
     imagePath: { $type: String },
     roomNumber: { $type: String },
-    studentsId: [Schema.Types.ObjectId],
+    studentsId: [{ $type: Schema.Types.ObjectId, ref: "Student" }],
     createdDate: { $type: Date, default: Date.now }
   },
   { typeKey: "$type" }

@@ -15,14 +15,13 @@ const studentSchema = new mongoose.Schema(
       minlength: 2,
       maxlength: 50
     },
-    classroomId: {
-      $type: Schema.Types.ObjectId,
-      ref: "Classroom"
-    },
-    teacherId: {
-      $type: Schema.Types.ObjectId,
-      ref: "Teacher"
-    },
+    classroomsId: [{ $type: Schema.Types.ObjectId, ref: "Classroom" }],
+    teachersId: [
+      {
+        $type: Schema.Types.ObjectId,
+        ref: "Teacher"
+      }
+    ],
     attendance: [
       {
         attendanceId: {
