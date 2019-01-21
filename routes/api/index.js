@@ -4,6 +4,8 @@ const authRoutes = require("./auth");
 const classroomsRoutes = require("./classrooms");
 const studentsRoutes = require("./students");
 const teachersRoutes = require("./teachers");
+const attendaceRoutes = require("./attendance");
+const assignmentsRoutes = require("./assignments");
 
 // Users routes
 router.use("/users", usersRoutes);
@@ -17,8 +19,14 @@ router.use("/classrooms", classroomsRoutes);
 // Students Routes
 router.use("/students", studentsRoutes);
 
-// Students Routes
+// Teachers Routes
 router.use("/teachers", teachersRoutes);
+
+// Attendace Routes
+router.use("/attendance", attendaceRoutes);
+
+// Assignment Routes
+router.use("/assignments", assignmentsRoutes);
 
 // For anything else, render the html page
 router.use(function(req, res) {
