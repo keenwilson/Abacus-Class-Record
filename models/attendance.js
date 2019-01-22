@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const attendanceSchema = new mongoose.Schema(
   {
     classDate: {
-      $type: Date,
-      index: true
+      $type: Date
     },
     isPresent: {
       $type: Boolean,
@@ -15,12 +14,13 @@ const attendanceSchema = new mongoose.Schema(
       $type: Schema.Types.ObjectId,
       ref: "Classroom"
     },
-    studentsId: [
-      {
-        $type: Schema.Types.ObjectId,
-        ref: "Student"
-      }
-    ]
+    studentId: {
+      $type: Schema.Types.ObjectId,
+      ref: "Student"
+    },
+    status: {
+      $type: String
+    }
   },
   { typeKey: "$type" }
 );
