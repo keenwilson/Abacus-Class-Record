@@ -19,5 +19,9 @@ export default {
     // Save a Teacher
     saveTeacher: function(teacherData) {
         return axios.post('/api/teachers', teacherData)
+    },
+
+    updateTeacher: function(id, teacherData) {
+        return axios.put('/api/teachers', teacherData);
     }
 };
