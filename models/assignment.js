@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-const assignmentSchema = new mongoose.Schema(
+const Schema = mongoose.Schema;
+const assignmentSchema = new Schema(
   {
     assignmentName: {
       $type: String,
@@ -15,10 +15,10 @@ const assignmentSchema = new mongoose.Schema(
       required: true
     },
     dueDate: {
-      $type: Date
+      $type:Number
     },
     dateSubmitted: {
-      $type: Date
+      $type:Number,
     },
     commentBody: { $type: String }
   },
