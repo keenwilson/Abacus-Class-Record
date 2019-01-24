@@ -16,8 +16,9 @@ import Students from "./components/students";
 import Navbar from "./components/navBar";
 import NotFound from "./components/notFound";
 import auth from "./services/authService";
-import "./App.css";
 import API from "./utils/API";
+import "./App.css";
+import "./components/assets/font-awesome/css/all.css";
 
 class App extends Component {
   state = {
@@ -89,7 +90,7 @@ class App extends Component {
       <Router>
         <React.Fragment>
           <Navbar user={user} />
-          <main className="container">
+          <main>
             <Switch>
               <Route path="/welcome" component={Welcome} />
               <Route path="/register" component={RegisterForm} />
