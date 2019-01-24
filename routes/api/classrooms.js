@@ -13,7 +13,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const classrooms = await Classroom.find()
     .select("-__v")
-    .sort("subject");
+    .sort("subject")
+    .populate("teacherId");
   res.send(classrooms);
 });
 
@@ -64,8 +65,8 @@ router.post("/", async (req, res) => {
   res.send(classroom);
 });
 
-// Add students to the classroom with /api/classrooms/:id/add/:studentId
-router.put("/:id/add/:studentId", async (req, res) => {
+// Add students to the classroom with /api/classrooms/add/:id/:studentId
+router.put("/add/:id/:studentId", async (req, res) => {
   console.log(req.params);
   const currentClassroomId = req.params.id;
   // Identify a student from the database
@@ -128,6 +129,7 @@ router.put("/:id/add/:studentId", async (req, res) => {
   res.send(updatedClassroom);
 });
 
+// Delete a Classroom
 router.delete("/:id", async (req, res) => {
   const classroom = await Classroom.findByIdAndRemove(req.params.id);
 
@@ -139,9 +141,11 @@ router.delete("/:id", async (req, res) => {
   res.send(classroom);
 });
 
-router.get("/:id", validateObjectId, async (req, res) => {
-  const classroom = await Classroom.findById(req.params.id).select("-__v");
-
+router.get("/:id", async (req, res) => {
+  const classroom = await Classroom.findById(req.params.id).populate(
+    "teacherId"
+  );
+  console.log(classroom);
   if (!classroom)
     return res
       .status(404)
