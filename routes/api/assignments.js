@@ -5,32 +5,48 @@ const router = express.Router();
 const Classroom = require("../../models/classroom")
 const Student = require('../../models/student')
 
-router.get("/assignments", async (req, res) => {
+router.get("/", async (req, res) => {
     const assignment = await Assignment.find()
         .select("-__v")
         .sort("assignmentType")
-         const studentsInClass = Classroom.studentId
-         studentsInClass.map(this.assignment)   
-        res.send(assignment);
-
-});
-router.post("/assignments/submit", async (req, res) => {
-    let assignment = new Assignment({
-        assignmentName: req.body.assignmentName,
-        assignmentDesc: req.body.assignmentDesc,
-        assignmentType: req.body.assignmentType,
-        dateSubmited: req.body.dateSubmitted,
-        dueDate: moment(req.body.assignmentDueDate, MM/DD/YYYY)
-    });
-    assignment = await assignment.save();
-    
-    if (!assignment)
-    return res.status(404).send("The assignment with the given ID was not found.");
-    
+    const studentsInClass = Classroom.studentId
+    studentsInClass.map(this.assignment)
     res.send(assignment);
+
 });
 
-router.put("/assignments/update/:id", async (req, res) => {
+router.post("/", async (req, res) => {
+    const classDate = req.body.classDate;
+    const parsedClassDate = moment(classDate, "YYYY-MM-DD");
+    const newClassDate = parsedClassDate.toDate();
+    console.log(newClassDate);
+
+    Classroom.findById(req.body.classroomId, async function (err, classroom) {
+        const studentsInClass = classroom.studentsId;
+        const currentClassroomId = classroom._id;
+        try {
+            for (let student of studentsInClass) {
+                const { _id: assignmentId } = await new Assignment({
+                    classroomId: currentClassroomId,
+                    studentId: student,
+                    classDate: newClassDate,
+                    assignmentName: req.body.assignmentName,
+                    assignmentDesc: req.body.assignmentDesc,
+                    assignmentType: req.body.assignmentType,
+                    dateSubmited: req.body.dateSubmitted,
+                    dueDate: moment(req.body.assignmentDueDate, MM / DD / YYYY)
+                }).save();
+            }
+            res
+                .status(200)
+                .send(assignment)
+        } catch (error) {
+            res.status(400).send('Invalid Assignment Id')
+        }
+    });
+});
+
+router.put("/:id", async (req, res) => {
     const assignment = await assignment.findByIdAndUpdate(
         req.params.id,
         {
@@ -49,7 +65,7 @@ router.put("/assignments/update/:id", async (req, res) => {
     res.send(assignment);
 });
 
-router.delete("/assignments/delete/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     const assignment = await Assignment.findByIdAndRemove(req.params.id);
 
     if (!assignment)
@@ -58,7 +74,7 @@ router.delete("/assignments/delete/:id", async (req, res) => {
     res.send(assignment);
 });
 
-router.get("/assignments/:id", auth, async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
     const assignment = await assignment.findById(req.params.id).select("-__v");
 
     if (!assignment)

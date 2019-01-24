@@ -10,36 +10,41 @@ const assignmentSchema = new Schema(
       $type: String,
       required: true
     },
-
+    assignmentDesc: {
+      $type: String,
+    },
     classroomId: {
       $type: Schema.Types.ObjectId,
-      ref:"Classroom"
+      ref: "Classroom"
     },
     dueDate: {
-      $type:Number
+      $type: Number
     },
     dateSubmitted: {
-      $type:Number,
+      $type: Number,
     },
-    students:[
+    students: [
       {
-        $type:Schema.Types.ObjectId,
-        ref:'Student',
-        grade:Number
+        $type: Schema.Types.ObjectId,
+        ref: 'Student',
+        grade: {
+          $type: Number,
+          default: 100
+        },
       }],
     commentBody: { $type: String }
   },
   { typeKey: "$type" }
 );
 
-assignmentSchema.statics.lookup = function(studentId, classroomId) {
+assignmentSchema.statics.lookup = function (studentId, classroomId) {
   return this.findOne({
     "student._id": studentId,
     "classroom._id": classroomId
   });
 };
 
-assignmentSchema.methods.submit = function() {
+assignmentSchema.methods.submit = function () {
   this.dateSubmitted = new Date();
 };
 
