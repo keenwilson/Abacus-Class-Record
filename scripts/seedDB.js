@@ -1,41 +1,93 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const Classroom = require("../models/classroom");
+const Assignment = require("../models/assignment");
+const Student = require("../models/student");
 
-// This file empties the Classrooms collection and inserts the classrooms below
+// This file empties the Classrooms, Students, Teachers collection and inserts the classrooms below
 
-var MONGODB_URI =
-  process.env.MONGODB_URL || "mongodb://localhost/reactclassroomapp";
+const MONGODB_URI =
+  process.env.MONGODB_URL || "mongodb://localhost/fullstackclassroom";
 const options = {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
   family: 4 // Use IPv4, skip trying IPv6
 };
-mongoose.connect(
-  MONGODB_URI,
-  options
-);
 
 const classroomSeed = [
   {
-    subject: "subject1",
-    techer: "teacher1",
-    date: new Date(Date.now())
-  },
-  {
-    subject: "subject2",
-    techer: "teacher2",
-    date: new Date(Date.now())
+    subject: "Grade 7 Earth Science",
+    teacher: "Ralph Fogarty",
+    description: "",
+    room: "253",
+    imagePath:
+      "https://www.edc.org/sites/default/files/images/earth-science.jpg",
+    dateAdded: new Date(Date.now()),
+    students: [
+      { name: "Tanisha Ivery" },
+      { name: "Rufus Dugger" },
+      { name: "Kassie Deshaies" },
+      { name: "Chet Kranz" },
+      { name: "Edmund Byram" }
+    ],
+    assignments: [
+      {
+        title: "Lab 1 Water Clock"
+      },
+      {
+        title: "Lab 2 Comparing Volume and Mass"
+      },
+      {
+        title: "Activity A Human Clock"
+      },
+      {
+        title: "Activity B Calculating Density"
+      }
+    ]
   }
 ];
 
-db.Classroom.remove({})
-  .then(() => db.Classroom.collection.insertMany(classroomSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+async function seed() {
+  await mongoose
+    .connect(
+      MONGODB_URI,
+      options
+    )
+    .then(() => {
+      console.log("Seed: Connected to Database");
+    })
+    .catch(err => {
+      console.log("Seed: Not Connected to Database ERROR! ", err);
+    });
+
+  // await db.Classroom.deleteMany({});
+  // await db.Teacher.deleteMany({});
+  // await db.Student.deleteMany({});
+  // await db.Assignment.deleteMany({});
+  for (let classroom of classroomSeed) {
+    const { _id: classroomId } = await new Classroom({
+      subject: classroom.subject,
+      room: classroom.room,
+      imagePath: classroom.imagePath,
+      dateAdded: classroom.dateAdded
+    }).save();
+    const assignments = classroom.assignments.map(assignment => ({
+      ...assignment,
+      classroomId
+    }));
+    await Assignment.insertMany(assignments);
+
+    const students = classroom.students.map(student => ({
+      ...student,
+      classroomId: [].push(classroomId)
+    }));
+    await Student.insertMany(students);
+  }
+
+  mongoose.disconnect();
+
+  console.info("Seed: Done!");
+}
+
+seed();

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const assignmentSchema = new Schema(
+
+const assignmentSchema = new mongoose.Schema(
   {
     assignmentName: {
       $type: String,
@@ -16,6 +17,10 @@ const assignmentSchema = new Schema(
     classroomId: {
       $type: Schema.Types.ObjectId,
       ref: "Classroom"
+    },
+    studentId: {
+      $type: Schema.Types.ObjectId,
+      required: true
     },
     dueDate: {
       $type: Number

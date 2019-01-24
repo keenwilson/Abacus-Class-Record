@@ -59,28 +59,33 @@ router.put("/:id", async (req, res) => {
         { new: true }
     );
 
-    if (!assignment)
-        return res.status(404).send("The assignment with the given ID was not found.");
+  if (!assignment)
+    return res
+      .status(404)
+      .send("The assignment with the given ID was not found.");
 
-    res.send(assignment);
+  res.send(assignment);
 });
 
 router.delete("/:id", async (req, res) => {
-    const assignment = await Assignment.findByIdAndRemove(req.params.id);
+  const assignment = await Assignment.findByIdAndRemove(req.params.id);
+  if (!assignment)
+    return res
+      .status(404)
+      .send("The assignment with the given ID was not found.");
 
-    if (!assignment)
-        return res.status(404).send("The assignment with the given ID was not found.");
-
-    res.send(assignment);
+  res.send(assignment);
 });
 
-router.get("/:id", auth, async (req, res) => {
-    const assignment = await assignment.findById(req.params.id).select("-__v");
 
-    if (!assignment)
-        return res.status(404).send("The assignment with the given ID was not found.");
+router.get("/:id", async (req, res) => {
+  const assignment = await Assignment.findById(req.params.id).select("-__v");
+  if (!assignment)
+    return res
+      .status(404)
+      .send("The assignment with the given ID was not found.");
 
-    res.send(assignment);
+  res.send(assignment);
 });
 
 module.exports = router;

@@ -19,10 +19,43 @@ const classroomSchema = new mongoose.Schema(
       required: true,
       index: true
     },
-    teacherId: Schema.Types.ObjectId,
+    teacherId: {
+      $type: Schema.Types.ObjectId,
+      ref: "Teacher"
+    },
     imagePath: { $type: String },
     roomNumber: Schema.Types.Mixed,
-    studentsId: [Schema.Types.ObjectId]
+    studentsId: [
+      {
+        $type: Schema.Types.ObjectId,
+        ref: "Student"
+      }
+    ],
+    assignmentsId: [
+      {
+        $type: Schema.Types.ObjectId,
+        ref: "Assignment"
+      }
+    ],
+    assignments: [
+      {
+        assignmentName: {
+          $type: String,
+          required: true,
+          minlength: 2,
+          maxlength: 255,
+          index: true
+        },
+        assignmentType: {
+          $type: String,
+          required: true
+        },
+        classroomId: {
+          $type: Schema.Types.ObjectId,
+          required: true
+        }
+      }
+    ]
   },
   { typeKey: "$type" }
 );
@@ -125,16 +158,23 @@ const studentSchema = new mongoose.Schema(
         ref: "Classroom"
       }
     ],
-    attendanceId: [
+    attendace: [
       {
-        $type: Schema.Types.ObjectId,
-        ref: "Attendace"
+        attendanceId: {
+          $type: Schema.Types.ObjectId,
+          ref: "Attendace"
+        },
+        isCheckedIn: { $type: Boolean, default: false }
       }
     ],
-    assignmentsId: [
+    assignments: [
       {
-        $type: Schema.Types.ObjectId,
-        ref: "Assignment"
+        assignmentId: {
+          $type: Schema.Types.ObjectId,
+          ref: "Assignment"
+        },
+        grade: String,
+        dateSubmitted: Date
       }
     ]
   },
@@ -238,6 +278,19 @@ async function seed() {
     }).save();
   }
 
+  for (let assignment of assignmentSeed) {
+    const classroomId = assignment.classroomId;
+    const { _id: assignmentId } = await new Assignment({
+      assignmentName: assignment.assignmentName,
+      assignmentType: assignment.assignmentType,
+      classroomId
+    }).save();
+
+    Classroom.findById(classroomId, function(err, classroom) {
+      classroom.assignmentsId.push(assignmentId);
+      console.log(classroom);
+    });
+  }
   mongoose.disconnect();
 
   console.info("Seed: Done!");
