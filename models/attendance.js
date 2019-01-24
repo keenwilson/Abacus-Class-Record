@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const attendanceSchema = new mongoose.Schema(
+const attendanceSchema = new Schema(
   {
     classDate: {
       $type: Date

@@ -11,6 +11,7 @@ import Logout from "./components/logout";
 import Welcome from "./components/welcome";
 import Classrooms from "./components/classrooms";
 import Teachers from './components/teachers';
+import Assignments from './components/assignments'
 import Students from './components/students';
 import Navbar from "./components/navBar";
 import NotFound from "./components/notFound";
@@ -40,6 +41,7 @@ class App extends Component {
               <Route path="/logout" component={Logout} />
               <Route path="/teachers" component={Teachers} />
               <Route path="/students" component={Students} />
+              <Route path="/assignments" component={Assignments} />
               <Route
                 path="/classrooms"
                 render={props => (

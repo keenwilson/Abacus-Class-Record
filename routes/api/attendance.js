@@ -7,6 +7,7 @@ const express = require("express");
 const router = express.Router();
 
 // Get all attendaces with ClassroomId
+
 router.get("/:classroomId", async (req, res) => {
   const attendace = await Attendance.find({
     classroomId: req.params.classroomId
@@ -14,7 +15,7 @@ router.get("/:classroomId", async (req, res) => {
     .select("-__v")
     .sort("studentId");
 
-  res.send(attendace);
+  res.send(attendance);
 });
 
 // Get all attendances with ClassroomId on a given class date
@@ -32,7 +33,7 @@ router.get("/:id/:classDate", async (req, res) => {
     .select("-__v")
     .sort("studentId");
 
-  res.send(attendace);
+  res.send(attendance);
 });
 
 // Create an attendace with ClassroomId and date of class

@@ -11,33 +11,45 @@ const assignmentSchema = new mongoose.Schema(
       $type: String,
       required: true
     },
+    assignmentDesc: {
+      $type: String,
+    },
     classroomId: {
       $type: Schema.Types.ObjectId,
-      required: true
+      ref: "Classroom"
     },
     studentId: {
       $type: Schema.Types.ObjectId,
       required: true
     },
     dueDate: {
-      $type: Date
+      $type: Number
     },
     dateSubmitted: {
-      $type: Date
+      $type: Number,
     },
+    students: [
+      {
+        $type: Schema.Types.ObjectId,
+        ref: 'Student',
+        grade: {
+          $type: Number,
+          default: 100
+        },
+      }],
     commentBody: { $type: String }
   },
   { typeKey: "$type" }
 );
 
-assignmentSchema.statics.lookup = function(studentId, classroomId) {
+assignmentSchema.statics.lookup = function (studentId, classroomId) {
   return this.findOne({
     "student._id": studentId,
     "classroom._id": classroomId
   });
 };
 
-assignmentSchema.methods.submit = function() {
+assignmentSchema.methods.submit = function () {
   this.dateSubmitted = new Date();
 };
 
