@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import * as userService from "../services/userService";
 import auth from "../services/authService";
+import {NavLink} from "react-router-dom";
 
 class RegisterForm extends Form {
   state = {
@@ -40,15 +41,38 @@ class RegisterForm extends Form {
 
   render() {
     return (
-      <div>
-        <h1>Register</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username")}
-          {this.renderInput("password", "Password", "password")}
-          {this.renderInput("name", "Name")}
-          {this.renderButton("Register")}
-        </form>
-      </div>
+        <div className="login">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 login-header">
+                <i className="far fa-abacus"></i>
+                <h1>Abacus</h1>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6 mx-auto login-form">
+                <h1 className="text-center">New Account</h1>
+                {/* Form Logic */}
+                <form onSubmit={this.handleSubmit}>
+                  {this.renderInput("username", "Username")}
+                  {this.renderInput("password", "Password", "password")}
+                  {this.renderInput("name", "Name")}
+                  <div className="form-group text-right">
+                    <div className="row">
+                      <div className="col-9 need-account">
+                        <span>Have an Account? <NavLink to="/login">Login here...</NavLink></span>
+                      </div>
+                      <div className="col-3">
+                        {this.renderButton("Register")}
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                {/* Form Logic */}
+              </div>
+            </div>
+          </div>
+        </div>
     );
   }
 }

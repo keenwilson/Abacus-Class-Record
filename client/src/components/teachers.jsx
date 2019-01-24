@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/common/Grid";
 import { List, ListItem } from "../components/common/List";
 import API from '../utils/API';
+import './assets/css/teachers.css';
 
 class Teachers extends Component {
     state = {
@@ -62,67 +63,80 @@ class Teachers extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-6">
+                    <Col size="md-12">
                         <h1 className="text-center">Teachers</h1>
-                        <h2 className="text-center">Add New Teacher</h2>
-                        <form>
-                            <div className="formControl">
-                                <label htmlFor="teacherFirstName">First Name:</label>
-                                <input type="text" id="teacherFirstName" name="firstName" placeholder="First Name..."
-                                        value={this.state.firstName}
-                                        onChange={this.handleInputChange} />
-                            </div>
-                            <div className="formControl">
-                                <label htmlFor="teacherLastName">Last Name:</label>
-                                <input type="text" id="teacherLastName" name="lastName" placeholder="Last Name..."
-                                        value={this.state.lastName}
-                                        onChange={this.handleInputChange} />
-                            </div>
-                            <div className="formControl">
-                                <label htmlFor="teacherEmail">E-Mail:</label>
-                                <input type="text" id="teacherEmail" name="email" placeholder="E-Mail..."
-                                        value={this.state.email}
-                                        onChange={this.handleInputChange} />
-                            </div>
-                            <input type="submit" value="Add Teacher"
-                                    disabled={!(this.state.firstName && this.state.lastName && this.state.email)}
-                                    onClick={this.handleFormSubmit} />
-                        </form>
                     </Col>
                     <Col size="md-6">
-                        <h2 className="text-center">Show all teachers in database</h2>
-                        {/* Output All teachers Loop // Start */}
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="text-center">Add New Teacher</h2>
+                            </div>
+                            <div className="card-body">
+                                <form>
+                                    <div className="formControl">
+                                        <label htmlFor="teacherFirstName">First Name:</label>
+                                        <input type="text" id="teacherFirstName" name="firstName" placeholder="First Name..."
+                                               value={this.state.firstName}
+                                               onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="formControl">
+                                        <label htmlFor="teacherLastName">Last Name:</label>
+                                        <input type="text" id="teacherLastName" name="lastName" placeholder="Last Name..."
+                                               value={this.state.lastName}
+                                               onChange={this.handleInputChange} />
+                                    </div>
+                                    <div className="formControl">
+                                        <label htmlFor="teacherEmail">E-Mail:</label>
+                                        <input type="text" id="teacherEmail" name="email" placeholder="E-Mail..."
+                                               value={this.state.email}
+                                               onChange={this.handleInputChange} />
+                                    </div>
+                                    <input type="submit" value="Add Teacher"
+                                           disabled={!(this.state.firstName && this.state.lastName && this.state.email)}
+                                           onClick={this.handleFormSubmit} />
+                                </form>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col size="md-6">
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="text-center">All Teachers</h2>
+                            </div>
+                            {/* Output All teachers Loop // Start */}
                             {this.state.teachers.length ? (
                                 <List>
                                     {this.state.teachers.map(teacher => (
-                                        <ListItem key={teacher._id}>
-                                            <strong>
-                                                {teacher.firstName},&nbsp;
-                                                {teacher.lastName},&nbsp;
-                                            </strong>
-                                            {teacher.email}
-                                            <button
-                                                className="btn-danger"
-                                                onClick={() => this.deleteTeacher(teacher._id)}>
-                                                X
-                                            </button>
-                                            <button
-                                                className="btn-success"
-                                                onClick={() => this.editTeacher(teacher._id)}>
-                                                X
-                                            </button>
-                                        </ListItem>
+                                        <div className="card-body">
+                                            <ListItem key={teacher._id}>
+                                                <strong>
+                                                    {teacher.firstName},&nbsp;
+                                                    {teacher.lastName},&nbsp;
+                                                </strong>
+                                                {teacher.email}
+                                                <button
+                                                    className="btn-danger"
+                                                    onClick={() => this.deleteTeacher(teacher._id)}>
+                                                    X
+                                                </button>
+                                                <button
+                                                    className="btn-success"
+                                                    onClick={() => this.editTeacher(teacher._id)}>
+                                                    X
+                                                </button>
+                                            </ListItem>
+                                        </div>
                                     ))}
                                 </List>
                             ) : (
                                 <strong>No Results to Display</strong>
                             )}
-                        {/* Output All teachers Loop // End */}
+                            {/* Output All teachers Loop // End */}
+                        </div>
                     </Col>
                 </Row>
                 <Row>
                     <Col size="md-6">
-                        Nothing
                     </Col>
                     <Col size="md-6">
                         {/* TODO: Edit Teacher Form */}

@@ -1,0 +1,16 @@
+.card-body .formControl input {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #cccccc;
+    padding: 10px 15px;
+}
+
+.card-body input[type="submit"] {
+    margin: 20px 0;
+    padding: 10px 15px;
+    border-radius: 6px;
+    float: right;
+    border: none;
+    background: #68968C;
+    color: #fff;
+}
