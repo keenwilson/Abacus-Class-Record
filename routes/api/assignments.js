@@ -9,7 +9,7 @@ router.get("/assignments", async (req, res) => {
     const assignment = await Assignment.find()
         .select("-__v")
         .sort("assignmentType")
-         const studentsInClass = Classroom.studenId
+         const studentsInClass = Classroom.studentId
          studentsInClass.map(this.assignment)   
         res.send(assignment);
 

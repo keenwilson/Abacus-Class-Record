@@ -10,9 +10,10 @@ const assignmentSchema = new Schema(
       $type: String,
       required: true
     },
+
     classroomId: {
       $type: Schema.Types.ObjectId,
-      required: true
+      ref:"Classroom"
     },
     dueDate: {
       $type:Number
@@ -20,6 +21,12 @@ const assignmentSchema = new Schema(
     dateSubmitted: {
       $type:Number,
     },
+    students:[
+      {
+        $type:Schema.Types.ObjectId,
+        ref:'Student',
+        grade:Number
+      }],
     commentBody: { $type: String }
   },
   { typeKey: "$type" }
