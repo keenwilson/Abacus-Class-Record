@@ -2,16 +2,16 @@ const Assignment = require("../../models/assignment");
 const auth = require("../../middleware/auth");
 const express = require("express");
 const router = express.Router();
-require("../../models/classroom")
-require('../../models/student')
+const Classroom = require("../../models/classroom")
+const Student = require('../../models/student')
+
 router.get("/assignments", async (req, res) => {
     const assignment = await Assignment.find()
         .select("-__v")
         .sort("assignmentType")
-    studentsInClass.map(classroom.student_id)
-    console.log(student_id)
-    res.send(assignment);
-
+         const studentsInClass = Classroom.studenId
+         studentsInClass.map(this.assignment)   
+        res.send(assignment);
 
 });
 router.post("/assignments/submit", async (req, res) => {
@@ -20,7 +20,7 @@ router.post("/assignments/submit", async (req, res) => {
         assignmentDesc: req.body.assignmentDesc,
         assignmentType: req.body.assignmentType,
         dateSubmited: req.body.dateSubmitted,
-        dueDate: req.body.assignmentDueDate
+        dueDate: moment(req.body.assignmentDueDate, MM/DD/YYYY)
     });
     assignment = await assignment.save();
     
