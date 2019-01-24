@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const assignmentSchema = new mongoose.Schema(
   {
@@ -11,6 +12,10 @@ const assignmentSchema = new mongoose.Schema(
       required: true
     },
     classroomId: {
+      $type: Schema.Types.ObjectId,
+      required: true
+    },
+    studentId: {
       $type: Schema.Types.ObjectId,
       required: true
     },

@@ -40,7 +40,10 @@ const studentSchema = new mongoose.Schema(
         grade: String,
         dateSubmitted: Date
       }
-    ]
+    ],
+    emergencyPhone: { $type: String },
+    emergencyContact: { $type: String },
+    allergyNote: { $type: String }
   },
   { typeKey: "$type" }
 );

@@ -7,9 +7,9 @@ const express = require("express");
 const router = express.Router();
 
 // Get all attendaces with ClassroomId
-router.get("/:id", async (req, res) => {
+router.get("/:classroomId", async (req, res) => {
   const attendace = await Attendance.find({
-    classroomId: req.params.id
+    classroomId: req.params.classroomId
   })
     .select("-__v")
     .sort("studentId");
@@ -17,11 +17,11 @@ router.get("/:id", async (req, res) => {
   res.send(attendace);
 });
 
-// Get all attendaces with ClassroomId on a given class date
-router.get("/:id", validateObjectId, async (req, res) => {
+// Get all attendances with ClassroomId on a given class date
+router.get("/:id/:classDate", async (req, res) => {
   const classroomId = req.params.id;
   // Parse classDate with moment
-  const classDate = req.body.classDate;
+  const classDate = req.params.classDate;
   const parsedClassDate = moment(classDate, "YYYY-MM-DD");
   const newClassDate = parsedClassDate.toDate();
 
