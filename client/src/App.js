@@ -10,25 +10,81 @@ import LoginForm from "./components/loginForm";
 import Logout from "./components/logout";
 import Welcome from "./components/welcome";
 import Classrooms from "./components/classrooms";
-import Teachers from './components/teachers';
-import Assignments from './components/assignments'
-import Students from './components/students';
+import Teachers from "./components/teachers";
+import Assignments from "./components/assignments";
+import Students from "./components/students";
 import Navbar from "./components/navBar";
 import NotFound from "./components/notFound";
 import auth from "./services/authService";
+import API from "./utils/API";
 import "./App.css";
 import "./components/assets/font-awesome/css/all.css";
 
 class App extends Component {
-  state = {};
+  state = {
+    classroom: {},
+    attendances: [],
+    classroomId: "",
+    classDate: ""
+  };
 
   componentDidMount() {
     const user = auth.getCurrentUser();
     this.setState({ user });
   }
+  handleClassroomIdChange = id => {
+    this.setState({ classroomId: id });
+  };
 
+  handleViewClassroom = classroomId => {
+    API.viewClassroom(classroomId)
+      .then(res => {
+        this.setState({
+          classroom: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  loadAttendances = (classroomId, classDate) => {
+    API.getAttendances(classroomId, classDate)
+      .then(res =>
+        this.setState({
+          attendances: res.data
+        })
+      )
+      .catch(err => console.log(err));
+  };
+
+  handleAllCheckIn = (classroomId, classDate) => {
+    API.updateAttendancesCheckIn(classroomId, classDate)
+      .then(res => {
+        this.loadAttendances(classroomId, classDate);
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleAllCheckOut = (classroomId, classDate) => {
+    API.updateAttendancesCheckOut(classroomId, classDate)
+      .then(res => {
+        this.setState({
+          attendances: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleToggleStudent = attendanceId => {
+    API.updateAttendanceToggle(attendanceId)
+      .then(res => {
+        this.setState({
+          attendances: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
   render() {
-    const { user } = this.state;
+    const { classroomId, user } = this.state;
 
     return (
       <Router>
@@ -43,12 +99,18 @@ class App extends Component {
               <Route path="/teachers" component={Teachers} />
               <Route path="/students" component={Students} />
               <Route path="/assignments" component={Assignments} />
+
               <Route
                 path="/classrooms"
                 render={props => (
-                  <Classrooms {...props} user={this.state.user} />
+                  <Classrooms
+                    {...props}
+                    classroomId={this.state.classroomId}
+                    user={this.state.user}
+                  />
                 )}
               />
+
               <Route path="/not-found" component={NotFound} />
               <Redirect from="/" exact to="/welcome" />
               <Redirect to="/not-found" />
