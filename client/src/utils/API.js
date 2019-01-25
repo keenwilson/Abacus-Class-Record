@@ -1,27 +1,105 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    // Get All AdminTeachers
-    getTeachers: function() {
-        return axios.get('api/teachers');
-    },
+  // Get All Teachers
+  getTeachers: function() {
+    return axios.get("api/teachers");
+  },
 
-    // Get specific Teacher
-    getTeacher: function(id) {
-        return axios.get('api/teachers/' + id);
-    },
+  // Get specific Teacher
+  getTeacher: function(id) {
+    return axios.get("api/teachers/" + id);
+  },
 
-    // Delete a Teacher
-    deleteTeacher: function(id) {
-        return axios.delete('api/teachers/' + id);
-    },
+  // Delete a Teacher
+  deleteTeacher: function(id) {
+    return axios.delete("api/teachers/" + id);
+  },
 
-    // Save a Teacher
-    saveTeacher: function(teacherData) {
-        return axios.post('/api/teachers', teacherData)
-    },
+  // Save a Teacher
+  saveTeacher: function(teacherData) {
+    return axios.post("/api/teachers", teacherData);
+  },
 
-    updateTeacher: function(id, teacherData) {
-        return axios.put('/api/teachers', teacherData);
-    }
+  updateTeacher: function(teacherId, teacherData) {
+    return axios.put("/api/teachers/" + teacherId, teacherData);
+  },
+
+  // Get All Classrooms
+  getClassrooms: function() {
+    return axios.get("/api/classrooms");
+  },
+
+  // Get specific Classroom
+  viewClassroom: function(classroomId) {
+    console.log("classroom id:", classroomId);
+    return axios.get("/api/classrooms/" + classroomId).catch(function(error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    });
+  },
+
+  // Create a Classroom with a valid teacher Id
+  createClassroom: function(classroomData) {
+    return axios.post("/api/classrooms", classroomData);
+  },
+
+  // Add a student to a classroom
+  addStudentToClassroom: function(classroomId, studentId) {
+    return axios.put("/api/classrooms/add/" + classroomId + "/" + studentId);
+  },
+
+  // Delete a Classroom
+  deleteClassroom: function(classroomId) {
+    return axios.delete("/api/classrooms/" + classroomId);
+  },
+  // Create an attendance with 1.) classroomId and 2.) classDate in format "YYYY-MM-DD"
+  createAttendances: function(attendanceData) {
+    return axios.post("/api/attendance", attendanceData);
+  },
+
+  // Get all attendances, student names, class subject
+  // by using classroomId as id and classDate with a format "YYYY-MM-DD"
+  // studentId and classroomId will be populated with firstName, lastName, and subject
+  getAttendances: function(classroomId, classDate) {
+    return axios.get("/api/attendance/" + classroomId + "/" + classDate);
+  },
+
+  // Check in all students in that classroom/classDate
+  updateAttendancesCheckIn: function(classroomId, classDate) {
+    return axios.put(
+      "/api/attendance/checkin/" + classroomId + "/" + classDate
+    );
+  },
+
+  // Check out all students in that classroom/classDate
+  updateAttendancesCheckOut: function(classroomId, classDate) {
+    return axios.put(
+      "/api/attendance/checkout/" + classroomId + "/" + classDate
+    );
+  },
+
+  // Check in or check out (toggle) a student into a classroom/classDate
+  updateAttendanceToggle: function(attendanceId) {
+    return axios.put("/api/attendance/" + attendanceId);
+  },
+
+  // Delete an attendance of a student into a classroom/classDate
+  deleteAttendance: function(attendanceId) {
+    return axios.delete("/api/attendance/" + attendanceId);
+  }
 };

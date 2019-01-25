@@ -32,11 +32,10 @@ const assignmentSchema = new mongoose.Schema(
       {
         $type: Schema.Types.ObjectId,
         ref: 'Student',
-        grade: {
-          $type: Number,
-          default: 100
-        },
       }],
+      grade: {
+        $type: Number
+      },
     commentBody: { $type: String }
   },
   { typeKey: "$type" }

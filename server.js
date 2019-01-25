@@ -24,7 +24,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 const MONGODB_URI =
-  process.env.MONGODB_URL || "mongodb://localhost/fullstackclassroom";
+  process.env.MONGODB_URL || "mongodb://127.0.0.1/fullstackclassroom";
 const options = {
   useNewUrlParser: true,
   useCreateIndex: true,

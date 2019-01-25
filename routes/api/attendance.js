@@ -6,18 +6,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
-// Get all attendaces with ClassroomId
-
-router.get("/:classroomId", async (req, res) => {
-  const attendace = await Attendance.find({
-    classroomId: req.params.classroomId
-  })
-    .select("-__v")
-    .sort("studentId");
-
-  res.send(attendance);
-});
-
 // Get all attendances with ClassroomId on a given class date
 router.get("/:id/:classDate", async (req, res) => {
   const classroomId = req.params.id;
@@ -26,14 +14,99 @@ router.get("/:id/:classDate", async (req, res) => {
   const parsedClassDate = moment(classDate, "YYYY-MM-DD");
   const newClassDate = parsedClassDate.toDate();
 
-  const attendace = await Attendance.find({
+  const attendance = await Attendance.find({
     classroomId: req.params.id,
     classDate: newClassDate
   })
     .select("-__v")
-    .sort("studentId");
-
+    .sort("studentId")
+    .populate({
+      path: "studentId",
+      select: "-_id"
+    })
+    .populate({
+      path: "classroomId",
+      select: "-_id"
+    });
   res.send(attendance);
+});
+
+// Check in all students into a classroom with a classroomId and classDate
+router.put("/checkin/:id/:classDate/", async (req, res) => {
+  const classroomId = req.params.id;
+  // Parse classDate with moment
+  const classDate = req.params.classDate;
+  const parsedClassDate = moment(classDate, "YYYY-MM-DD");
+  const newClassDate = parsedClassDate.toDate();
+
+  const attendances = await Attendance.find(
+    {
+      classroomId: req.params.id,
+      classDate: newClassDate
+    },
+    { new: true },
+    async function(err, foundAttendances) {
+      try {
+        for (let attendance of foundAttendances) {
+          await Attendance.findByIdAndUpdate(
+            attendance._id,
+            {
+              isPresent: true
+            },
+            { upsert: true, new: true }
+          );
+        }
+        res
+          .status(200)
+          .send(
+            `The attendance for the classroom ID: ${classroomId} on the given class date: ${classDate} is updated to true to all ${
+              foundAttendances.length
+            } students in this class.`
+          );
+      } catch (error) {
+        res.status(400).send("Invalid attendance Id.");
+      }
+    }
+  );
+});
+
+// Check in all students into a classroom with a classroomId and classDate
+router.put("/checkout/:id/:classDate/", async (req, res) => {
+  const classroomId = req.params.id;
+  // Parse classDate with moment
+  const classDate = req.params.classDate;
+  const parsedClassDate = moment(classDate, "YYYY-MM-DD");
+  const newClassDate = parsedClassDate.toDate();
+
+  const attendances = await Attendance.find(
+    {
+      classroomId: req.params.id,
+      classDate: newClassDate
+    },
+    { upsert: true, new: true },
+    async function(err, foundAttendances) {
+      try {
+        for (let attendance of foundAttendances) {
+          await Attendance.findByIdAndUpdate(
+            attendance._id,
+            {
+              isPresent: false
+            },
+            { new: true }
+          );
+        }
+        res
+          .status(200)
+          .send(
+            `The attendance for the classroom ID: ${classroomId} on the given class date: ${classDate} is updated to false to all ${
+              foundAttendances.length
+            } students in this class.`
+          );
+      } catch (error) {
+        res.status(400).send("Invalid attendance Id.");
+      }
+    }
+  );
 });
 
 // Create an attendace with ClassroomId and date of class
@@ -82,6 +155,7 @@ router.put("/:id", validateObjectId, async (req, res) => {
   res.send(attendance);
 });
 
+// Remove attendance
 router.delete("/:id", validateObjectId, async (req, res) => {
   const attendance = await Attendance.findByIdAndRemove(req.params.id);
 
