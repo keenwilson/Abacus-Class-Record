@@ -3,11 +3,12 @@ const auth = require("../../middleware/auth");
 const express = require("express");
 const router = express.Router();
 
+
 router.get("/", async (req, res) => {
   const students = await Student.find()
     .select("-__v")
-    .sort("lastName");
-  res.send(students);
+    .sort("lastName")
+  res.send(students)
 });
 
 router.post("/", async (req, res) => {
