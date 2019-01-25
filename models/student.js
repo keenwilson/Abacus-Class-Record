@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const studentSchema = new mongoose.Schema(
+const studentSchema = new Schema(
   {
     firstName: {
       $type: String,
@@ -40,7 +40,10 @@ const studentSchema = new mongoose.Schema(
         grade: String,
         dateSubmitted: Date
       }
-    ]
+    ],
+    emergencyPhone: { $type: String },
+    emergencyContact: { $type: String },
+    allergyNote: { $type: String }
   },
   { typeKey: "$type" }
 );
