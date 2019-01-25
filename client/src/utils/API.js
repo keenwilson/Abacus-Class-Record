@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-    // Get All Teachers
+    // Get All AdminTeachers
     getTeachers: function() {
         return axios.get('api/teachers');
     },
