@@ -25,13 +25,37 @@ export default {
     return axios.put("/api/teachers/" + teacherId, teacherData);
   },
 
+  // Get All Students
+  getStudents: function() {
+    return axios.get("api/students");
+  },
+
+  // Get specific Student
+  getStudent: function(studentId) {
+    return axios.get("api/students/" + studentId);
+  },
+
+  // Delete a Student
+  deleteStudent: function(studentId) {
+    return axios.delete("api/students/" + studentId);
+  },
+
+  // Save a Student
+  saveStudent: function(studentData) {
+    return axios.post("/api/students", studentData);
+  },
+
+  updateStudent: function(studentId, studentData) {
+    return axios.put("/api/students/" + studentId, studentData);
+  },
+
   // Get All Classrooms
   getClassrooms: function() {
     return axios.get("/api/classrooms");
   },
 
   // Get specific Classroom
-  viewClassroom: function(classroomId) {
+  getClassroom: function(classroomId) {
     console.log("classroom id:", classroomId);
     return axios.get("/api/classrooms/" + classroomId).catch(function(error) {
       if (error.response) {

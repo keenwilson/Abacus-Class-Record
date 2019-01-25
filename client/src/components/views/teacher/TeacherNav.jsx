@@ -1,19 +1,36 @@
-import React, { Component } from 'react';
-import './assets/css/navbar.css';
+import React, { Component } from "react";
+import "./assets/css/navbar.css";
 
-class abacusNavbar extends Component {
-    state = {};
+class AbacusNavbar extends Component {
+  constructor(props) {
+    super(props);
 
-    render() {
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-        return(
-            <nav className="abacus-nav">
-                <h1>
-                Teacher Nav
-                </h1>
-            </nav>
-        );
-    }
+  // That stateless component class defines a function that calls the passed-down function, and that can take an event object as an argument.
+  handleChange(e) {
+    const differentClassroom = e.target.value;
+    this.props.onChange(differentClassroom);
+  }
+
+  render() {
+    console.log("classroom as props", this.props.classrooms);
+
+    return (
+      <nav className="abacus-nav">
+        <h1>Teacher Nav for </h1>
+
+        <select onChange={this.handleChange}>
+          {this.props.classrooms.map((classroom, i) => (
+            <option key={i} value={classroom._id}>
+              {classroom.subject}
+            </option>
+          ))}
+        </select>
+      </nav>
+    );
+  }
 }
 
-export default abacusNavbar;
+export default AbacusNavbar;
