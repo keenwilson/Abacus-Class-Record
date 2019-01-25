@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "description": "Mern Demo",
   "private": true,
-  "proxy": {
-    "/api/*": {
-      "target": "http://[::1]:3001"
-    }
-  },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.18.0",
     "joi-browser": "^13.4.0",
@@ -20,7 +16,7 @@
     "react-scripts": "^2.1.1"
   },
   "scripts": {
-    "start": "mern@0.1.0 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

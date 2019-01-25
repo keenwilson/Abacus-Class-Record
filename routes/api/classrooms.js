@@ -14,7 +14,8 @@ router.get("/", async (req, res) => {
   const classrooms = await Classroom.find()
     .select("-__v")
     .sort("subject")
-    .populate("teacherId");
+    .populate("teacherId")
+    .populate("studentsId");
   res.send(classrooms);
 });
 
@@ -142,10 +143,10 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const classroom = await Classroom.findById(req.params.id).populate(
-    "teacherId"
-  );
-  console.log(classroom);
+  const classroom = await Classroom.findById(req.params.id)
+    .populate("teacherId")
+    .populate("studentsId");
+
   if (!classroom)
     return res
       .status(404)
