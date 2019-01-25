@@ -15,6 +15,7 @@ const studentSchema = new Schema(
       minlength: 2,
       maxlength: 50
     },
+    currentGrade:Number,
     classroomsId: [{ $type: Schema.Types.ObjectId, ref: "Classroom" }],
     teachersId: [
       {
@@ -37,7 +38,7 @@ const studentSchema = new Schema(
           $type: Schema.Types.ObjectId,
           ref: "Assignment"
         },
-        grade: String,
+        grade: Number,
         dateSubmitted: Date
       }
     ],
