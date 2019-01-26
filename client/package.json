@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Mern Demo",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "https://react-abacus.herokuapp.com/",
   "dependencies": {
     "axios": "^0.18.0",
     "joi-browser": "^13.4.0",
