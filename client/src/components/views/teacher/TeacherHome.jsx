@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TeacherHome = props => {
   const teacher = props.teacher;
@@ -27,6 +28,9 @@ const TeacherHome = props => {
           </li>
         ))}
       </ul>
+      <p>
+        <Link to="/teacher/attendance">Check Attendance</Link>
+      </p>
     </React.Fragment>
   );
 };
