@@ -10,7 +10,11 @@ class App extends Component {
   }
 
   render() {
-    return <MainContainer />;
+    return (
+      <React.Fragment>
+        <MainContainer />;
+      </React.Fragment>
+    );
   }
 }
 
