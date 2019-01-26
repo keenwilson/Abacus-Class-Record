@@ -5,19 +5,13 @@ class AttendanceInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classroomId: "",
+      classroomId: props.classroom._id,
       classDate: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  getClassroomId() {
-    this.setState({
-      classroomId: props.classroom._id
-    });
-    console.log("Attendance received classroomId", this.state.classroomId);
-  }
   setClassDate(classDate) {
     this.setState({ classDate: classDate });
   }

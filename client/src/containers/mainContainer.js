@@ -34,7 +34,6 @@ class MainContainer extends Component {
           <Route exact path="/register" component={Register} />
 
           <Route
-            exact
             path="/admin"
             render={props => (
               <AdminContainer {...props} user={this.state.user} />
@@ -42,7 +41,6 @@ class MainContainer extends Component {
           />
 
           <Route
-            exact
             path="/teacher"
             render={props => (
               <TeacherContainer {...props} user={this.state.user} />
