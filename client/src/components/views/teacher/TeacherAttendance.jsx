@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AttendanceInput from "../../attendance/attendanceInput";
 
 const TeacherAttendance = ({ match }) => {
   return (

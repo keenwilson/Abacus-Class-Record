@@ -99,7 +99,7 @@ class TeacherContainer extends Component {
               />
             )}
           />
-          <Route path={match.url + "/attendance"} component={AttendanceInput} />
+
           <Route
             path="/teacher/assignments"
             render={props => (
