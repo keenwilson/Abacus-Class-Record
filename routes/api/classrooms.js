@@ -11,6 +11,7 @@ const router = express.Router();
 
 // Get all classrooms in the database
 router.get("/", async (req, res) => {
+  console.log("Routes/api: Getting all classrooms");
   const classrooms = await Classroom.find()
     .select("-__v")
     .sort("subject")
