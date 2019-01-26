@@ -1,17 +1,16 @@
 // Build a web server
 const path = require("path");
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const cors = require("cors");
 const Joi = require("joi");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 
+const app = express();
+
 // Define middleware here
 app.use(logger("dev"));
-app.use(cors());
 // Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -61,6 +60,8 @@ Joi.objectId = require("joi-objectid")(Joi);
 //   res.status(err.status || 500);
 //   res.render("error");
 // });
+
+console.log(`This directory is: ${__dirname}`);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
