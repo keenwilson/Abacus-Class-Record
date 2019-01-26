@@ -61,6 +61,10 @@ Joi.objectId = require("joi-objectid")(Joi);
 //   res.render("error");
 // });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 // Start the API server
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
