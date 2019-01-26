@@ -77,9 +77,6 @@ class TeacherContainer extends Component {
   }
 
   render() {
-    const classroom = this.state.currentClassroom;
-    const teacher = this.state.teacher;
-    const students = this.state.students;
     return (
       <div>
         <TeacherNav
@@ -87,29 +84,6 @@ class TeacherContainer extends Component {
           classroom={this.state.currentClassroom}
           onChange={this.changeClassroom}
         />
-        <h1>This is teacher container's homepage</h1>
-        <div>
-          <p>Display Information of selected classroom here</p>
-          <p>Subject: {classroom.subject} </p>
-          <p>Room: {classroom.roomNumber} </p>
-          <img
-            src={classroom.imagePath}
-            alt={classroom.subject}
-            width="200"
-            height="150"
-          />
-          <p>
-            Teacher: {teacher.firstName} {teacher.lastName} {teacher.email}
-          </p>
-          <p>Students in class</p>
-          <ul>
-            {students.map((student, i) => (
-              <li key={i} value={student._id}>
-                {student.firstName} {student.lastName}
-              </li>
-            ))}
-          </ul>
-        </div>
 
         <Switch>
           <Route
@@ -120,8 +94,8 @@ class TeacherContainer extends Component {
                 {...props}
                 user={this.state.user}
                 classroom={this.state.currentClassroom}
-                tescher={this.state.currentTeacher}
-                students={this.state.currentStudentsInClass}
+                teacher={this.state.teacher}
+                students={this.state.students}
               />
             )}
           />
@@ -133,8 +107,8 @@ class TeacherContainer extends Component {
                 {...props}
                 user={this.state.user}
                 classroom={this.state.currentClassroom}
-                tescher={this.state.currentTeacher}
-                students={this.state.currentStudentsInClass}
+                teacher={this.state.teacher}
+                students={this.state.students}
               />
             )}
           />
@@ -146,8 +120,8 @@ class TeacherContainer extends Component {
                 {...props}
                 user={this.state.user}
                 classroom={this.state.currentClassroom}
-                tescher={this.state.currentTeacher}
-                students={this.state.currentStudentsInClass}
+                teacher={this.state.teacher}
+                students={this.state.students}
               />
             )}
           />
@@ -159,8 +133,8 @@ class TeacherContainer extends Component {
                 {...props}
                 user={this.state.user}
                 classroom={this.state.currentClassroom}
-                tescher={this.state.currentTeacher}
-                students={this.state.currentStudentsInClass}
+                teacher={this.state.teacher}
+                students={this.state.students}
               />
             )}
           />
