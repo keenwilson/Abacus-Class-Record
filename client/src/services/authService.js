@@ -2,7 +2,15 @@ import jwtDecode from "jwt-decode";
 import http from "./httpService";
 import { apiUrl } from "../config.json";
 
-const apiEndpoint = apiUrl + "/auth";
+let apiEndpoint;
+if (process.env.PUBLIC_URL) {
+  apiEndpoint = process.env.PUBLIC_URL + "/auth";
+  console.log("apiEndpoint:", apiEndpoint);
+} else {
+  apiEndpoint = apiUrl + "/auth";
+  console.log("apiEndpoint:", apiEndpoint);
+}
+
 const tokenKey = "token";
 
 http.setJwt(getJwt());
