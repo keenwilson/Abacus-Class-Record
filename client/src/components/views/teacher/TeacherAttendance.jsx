@@ -1,15 +1,12 @@
 import React, { Component } from "react";
+import AttendanceInput from "../../attendance/attendanceInput";
 
-class TeacherAttendance extends Component {
-  state = {};
-
-  render() {
-    return (
-      <div>
-        <h1> Attendance</h1>
-      </div>
-    );
-  }
-}
+const TeacherAttendance = ({ match }) => {
+  return (
+    <div>
+      <h1> Attendance</h1>
+    </div>
+  );
+};
 
 export default TeacherAttendance;

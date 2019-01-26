@@ -99,8 +99,8 @@ class TeacherContainer extends Component {
               />
             )}
           />
+          <Route path={match.url + "/attendance"} component={AttendanceInput} />
           <Route
-            exact
             path="/teacher/assignments"
             render={props => (
               <TeacherAssignments
@@ -113,7 +113,6 @@ class TeacherContainer extends Component {
             )}
           />
           <Route
-            exact
             path="/teacher/attendance"
             render={props => (
               <TeacherAttendance
@@ -126,7 +125,6 @@ class TeacherContainer extends Component {
             )}
           />
           <Route
-            exact
             path="/teacher/grades"
             render={props => (
               <TeacherGrades
@@ -143,5 +141,4 @@ class TeacherContainer extends Component {
     );
   }
 }
-
 export default TeacherContainer;

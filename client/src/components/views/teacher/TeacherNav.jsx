@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./assets/css/navbar.css";
 
 class AbacusNavbar extends Component {
@@ -28,6 +29,9 @@ class AbacusNavbar extends Component {
             </option>
           ))}
         </select>
+        <Link to="/teacher/attendance">Attendance</Link>
+        <Link to="/teacher/assignments">Assignments</Link>
+        <Link to="/teacher/grades">Grade</Link>
       </nav>
     );
   }
