@@ -1,17 +1,27 @@
 # Full Stack Classroom
 
-RESTful Services
-for registering user:
-POST http://localhost:3001/api/users
+RESTful API Services
 
-for logging in user:
-POST http://localhost:3001/api/auth
+| Route      | HTTP Verb | Description   |
+| ---------- | --------- | ------------- |
+| /api/users | `POST`    | Create a user |
+| /api/auth  | `POST`    | Login a user  |
 
-for getting all teachers
-GET http://localhost:3001/api/teachers
+| Route                         | HTTP Verb | Description                      |
+| ----------------------------- | --------- | -------------------------------- |
+| /api/classrooms               | `GET`     | Get all the classrooms           |
+| /api/classrooms               | `POST`    | Crate a classroom                |
+| /api/classrooms/:classroom_id | `GET`     | Get a single classroom           |
+| /api/classrooms/:classroom_id | `PUT`     | Update a classroom with new info |
+| /api/classrooms/:classroom_id | `DELETE`  | Delete a classroom               |
 
-for creating a new teachers
-POST http://localhost:3001/api/teachers
+| Route                     | HTTP Verb | Description                    |
+| ------------------------- | --------- | ------------------------------ |
+| /api/teachers             | `GET`     | Get all the teachers           |
+| /api/teachers             | `POST`    | Crate a teacher                |
+| /api/teachers/:teacher_id | `GET`     | Get a single teacher           |
+| /api/teachers/:teacher_id | `PUT`     | Update a teacher with new info |
+| /api/teachers/:teacher_id | `DELETE`  | Delete a teacher               |
 
 ## Technologies used
 
