@@ -26,12 +26,16 @@ class MainContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Main Container</h1>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/logout" component={Logout} />
-          <Route exact path="/register" component={Register} />
+          <Route
+            exact
+            path="/"
+            render={props => <Home {...props} user={this.state.user} />}
+          />
+
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/register" component={Register} />
 
           <Route
             path="/admin"
