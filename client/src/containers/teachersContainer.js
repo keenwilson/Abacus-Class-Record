@@ -7,7 +7,8 @@ import TeacherAttendance from "../components/views/teacher/TeacherAttendance";
 import TeacherGrades from "../components/views/teacher/TeacherGrades";
 import API from "../utils/API";
 
-class TeacherContainer extends Component {
+
+class TeachersContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +27,7 @@ class TeacherContainer extends Component {
     this.getClassroomsData();
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   getClassroomsData() {
     API.getClassrooms()
@@ -141,4 +142,5 @@ class TeacherContainer extends Component {
     );
   }
 }
-export default TeacherContainer;
+
+export default TeachersContainer

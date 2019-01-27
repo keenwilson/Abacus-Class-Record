@@ -7,7 +7,8 @@ import Register from "../components/Register";
 import authService from "../services/authService";
 import Oops from "../components/Oops";
 import AdminContainer from "./adminContainer";
-import TeacherContainer from "./teachersContainer";
+import TeachersContainer from "./teachersContainer";
+
 
 class MainContainer extends Component {
   constructor(props) {
@@ -17,42 +18,44 @@ class MainContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    const user = authService.getCurrentUser();
-    console.log("Auth service is getting a current user");
-    this.setState({ user });
-  }
 
-  render() {
-    return (
-      <div>
-        <h1>Main Container</h1>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/logout" component={Logout} />
-          <Route exact path="/register" component={Register} />
+    componentDidMount() {
+      const user = authService.getCurrentUser();
+      console.log("Auth service is getting a current user");
+      this.setState({ user });
+    }
 
-          <Route
-            path="/admin"
-            render={props => (
-              <AdminContainer {...props} user={this.state.user} />
-            )}
-          />
+    render() {
+      return (
+        <div>
+          <h1>Main Container</h1>
+          <Switch>
+            <Route /*exact*/ path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/logout" component={Logout} />
+            <Route exact path="/register" component={Register} />
 
-          <Route
-            path="/teacher"
-            render={props => (
-              <TeacherContainer {...props} user={this.state.user} />
-            )}
-          />
+            <Route
+              /*exact*/
+              path="/admin"
+              render={props => (
+                <AdminContainer {...props} user={this.state.user} />
+              )}
+            />
 
-          <Route path="/oops" component={Oops} />
-          <Redirect to="/oops" />
-        </Switch>
-      </div>
-    );
-  }
+            <Route
+              // exact
+              path="/teacher"
+              render={props => (
+                <TeachersContainer {...props} user={this.state.user} />
+              )}
+            />
+
+            <Route path="/oops" component={Oops} />
+            <Redirect to="/oops" />
+          </Switch>
+        </div>
+      );
+    }
 }
-
 export default MainContainer;
