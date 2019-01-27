@@ -2,15 +2,7 @@ import jwtDecode from "jwt-decode";
 import http from "./httpService";
 import { apiUrl } from "../config.json";
 
-let apiEndpoint;
-if (process.env.PUBLIC_URL) {
-  apiEndpoint = process.env.PUBLIC_URL + "/auth";
-  console.log("apiEndpoint:", apiEndpoint);
-} else {
-  apiEndpoint = apiUrl + "/auth";
-  console.log("apiEndpoint:", apiEndpoint);
-}
-
+const apiEndpoint = "https://react-abacus.herokuapp.com/api" + "/auth";
 const tokenKey = "token";
 
 http.setJwt(getJwt());

@@ -16,13 +16,12 @@ class AbacusNavbar extends Component {
   }
 
   render() {
-    console.log("classroom as props", this.props.classrooms);
-
     return (
       <nav className="abacus-nav">
         <h1>Teacher Nav for </h1>
 
         <select onChange={this.handleChange}>
+          <option>Select Class</option>
           {this.props.classrooms.map((classroom, i) => (
             <option key={i} value={classroom._id}>
               {classroom.subject}
