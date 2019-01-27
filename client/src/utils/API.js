@@ -83,6 +83,13 @@ export default {
   // by using classroomId as id and classDate with a format "YYYY-MM-DD"
   // studentId and classroomId will be populated with firstName, lastName, and subject
   getAttendances: function(classroomId, classDate) {
+    console.log(
+      "Axios get api/attendance classroomID:",
+      classroomId,
+      "classDate:",
+      classDate
+    );
+    console.log("/api/attendance/" + classroomId + "/" + classDate);
     return axios.get("/api/attendance/" + classroomId + "/" + classDate);
   },
 

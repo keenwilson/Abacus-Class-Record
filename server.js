@@ -3,14 +3,17 @@ const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
+const cors = require("cors");
 const Joi = require("joi");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
+require("dotenv").config();
 
 const app = express();
 
 // Define middleware here
 app.use(logger("dev"));
+app.use(cors());
 // Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,8 +26,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1/fullstackclassroom";
+const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGODB_URI_LOCAL;
 const options = {
   useNewUrlParser: true,
   useCreateIndex: true,

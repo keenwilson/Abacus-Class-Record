@@ -26,7 +26,9 @@ class TeacherContainer extends Component {
     this.getClassroomsData();
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    console.log("TeacherContainer state:", this.state);
+  }
 
   getClassroomsData() {
     API.getClassrooms()
@@ -87,20 +89,6 @@ class TeacherContainer extends Component {
 
         <Switch>
           <Route
-            exact
-            path="/teacher/"
-            render={props => (
-              <TeacherHome
-                {...props}
-                user={this.state.user}
-                classroom={this.state.currentClassroom}
-                teacher={this.state.teacher}
-                students={this.state.students}
-              />
-            )}
-          />
-
-          <Route
             path="/teacher/assignments"
             render={props => (
               <TeacherAssignments
@@ -128,6 +116,19 @@ class TeacherContainer extends Component {
             path="/teacher/grades"
             render={props => (
               <TeacherGrades
+                {...props}
+                user={this.state.user}
+                classroom={this.state.currentClassroom}
+                teacher={this.state.teacher}
+                students={this.state.students}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/teacher/"
+            render={props => (
+              <TeacherHome
                 {...props}
                 user={this.state.user}
                 classroom={this.state.currentClassroom}
