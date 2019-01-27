@@ -36,7 +36,6 @@ class TeacherAttendance extends Component {
     );
     await API.getAttendances(classroomId, classDate)
       .then(res => {
-        console.log(res);
         this.setState({ attendanceList: res.data }, () => {
           console.log(this.state.attendanceList);
         });
@@ -68,6 +67,7 @@ class TeacherAttendance extends Component {
   }
 
   render() {
+    const studentsAttendance = this.state.attendanceList;
     return (
       <div>
         <h1>Attendance Window</h1>
@@ -88,6 +88,14 @@ class TeacherAttendance extends Component {
             </button>
           </div>
         </form>
+        <ul>
+          {studentsAttendance.map((attendance, i) => (
+            <li key={i} value={attendance._id}>
+              {attendance.studentId.firstName} {attendance.studentId.lastName}{" "}
+              {attendance.isPresent ? "present" : "not-present"}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

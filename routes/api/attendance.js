@@ -22,11 +22,10 @@ router.get("/:id/:classDate", async (req, res) => {
     .sort("studentId")
     .populate({
       path: "studentId",
-      select: "-_id"
+      select: "-teachersId"
     })
     .populate({
-      path: "classroomId",
-      select: "-_id"
+      path: "classroomId"
     });
   res.send(attendance);
   console.log("Router receives api", attendance);
