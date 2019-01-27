@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.baseURL = "https://react-abacus.herokuapp.com";
+
 export default {
   // Get All Teachers
   getTeachers: function() {
@@ -83,7 +85,33 @@ export default {
   // by using classroomId as id and classDate with a format "YYYY-MM-DD"
   // studentId and classroomId will be populated with firstName, lastName, and subject
   getAttendances: function(classroomId, classDate) {
-    return axios.get("/api/attendance/" + classroomId + "/" + classDate);
+    console.log(
+      "Axios get api/attendance classroomID:",
+      classroomId,
+      "classDate:",
+      classDate
+    );
+    console.log("/api/attendance/" + classroomId + "/" + classDate);
+    return axios
+      .get("/api/attendance/" + classroomId + "/" + classDate)
+      .catch(function(error) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      });
   },
 
   // Check in all students in that classroom/classDate
