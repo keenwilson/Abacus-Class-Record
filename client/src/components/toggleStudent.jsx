@@ -27,7 +27,10 @@ class ToggleStudent extends Component {
 
   render() {
     return (
-      <button onClick={this.handleClick}>
+      <button
+        key={this.state.attendanceId + "_" + this.state.isPresent}
+        onClick={this.handleClick}
+      >
         {this.state.isPresent ? "Already checked in" : "Check in"}
       </button>
     );

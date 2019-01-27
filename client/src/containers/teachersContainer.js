@@ -20,26 +20,21 @@ class TeacherContainer extends Component {
     this.changeClassroom = this.changeClassroom.bind(this);
     this.getTeacherInfo = this.getTeacherInfo.bind(this);
     this.getStudentsInfo = this.getStudentsInfo.bind(this);
+    this.refreshClassroom = this.refreshClassroom.bind(this);
   }
 
   componentDidMount() {
     this.getClassroomsData();
   }
 
-  componentDidUpdate() {
-    console.log("TeacherContainer state:", this.state);
-  }
-
   getClassroomsData() {
     API.getClassrooms()
       .then(res => {
-        console.log(res.data);
         this.setState({
           classrooms: res.data
         });
       })
       .catch(err => console.log(err));
-    console.log(this.state.classrooms);
   }
 
   async changeClassroom(classroomId) {
@@ -51,28 +46,32 @@ class TeacherContainer extends Component {
         });
         this.getTeacherInfo();
         this.getStudentsInfo();
+        this.refreshClassroom();
       })
       .catch(err => console.log(err));
+  }
+
+  refreshClassroom() {
+    this.setState({ refreshClassroom: !this.state.refreshClassroom });
   }
 
   getTeacherInfo() {
     const currentClassroom = this.state.currentClassroom;
     const teacherFirstname = currentClassroom.teacherId.firstName;
     const teacherLastname = currentClassroom.teacherId.lastName;
-    console.log("Teacher: ", teacherFirstname + " " + teacherLastname);
+    const teacher = {
+      name: teacherFirstname + " " + teacherLastname,
+      email: currentClassroom.teacherId.email,
+      teacherId: currentClassroom.teacherId._id
+    };
 
     this.setState({
-      teacher: currentClassroom.teacherId
+      teacher: teacher
     });
-    console.log(this.state.teacher);
   }
 
   getStudentsInfo() {
     const currentClassroom = this.state.currentClassroom;
-    const studentFirstname = currentClassroom.studentsId[0].firstName;
-    const studentLastname = currentClassroom.studentsId[0].lastName;
-    console.log("Student: ", studentFirstname + " " + studentLastname);
-
     this.setState({
       students: currentClassroom.studentsId
     });
@@ -109,6 +108,7 @@ class TeacherContainer extends Component {
                 classroom={this.state.currentClassroom}
                 teacher={this.state.teacher}
                 students={this.state.students}
+                refresh={this.refreshClassroom}
               />
             )}
           />

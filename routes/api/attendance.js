@@ -111,12 +111,10 @@ router.put("/checkout/:id/:classDate/", async (req, res) => {
 
 // Create an attendace with ClassroomId and date of class
 router.post("/", async (req, res) => {
-  console.log(req.body);
   // Parse classDate with moment
   const classDate = req.body.classDate;
   const parsedClassDate = moment(classDate, "YYYY-MM-DD");
   const newClassDate = parsedClassDate.toDate();
-  console.log(newClassDate);
 
   // Find all students in that classroom
   Classroom.findById(req.body.classroomId, async function(err, classroom) {
@@ -146,11 +144,13 @@ router.post("/", async (req, res) => {
 // Check a student into a classroom with a unique attendance Id
 router.put("/:id", validateObjectId, async (req, res) => {
   const originalAttendance = await Attendance.findById(req.params.id);
-
   const clonedStatus = originalAttendance.isPresent;
-  console.log("original status", clonedStatus);
-  const toggledStatus = clonedStatus === true ? false : true;
-  console.log("new status", toggledStatus);
+  let toggledStatus;
+  if (clonedStatus === true) {
+    toggledStatus = false;
+  } else {
+    toggledStatus = true;
+  }
   const attendance = await Attendance.findByIdAndUpdate(req.params.id, {
     isPresent: toggledStatus
   });
