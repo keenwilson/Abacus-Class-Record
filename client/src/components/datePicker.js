@@ -16,6 +16,14 @@ class SelectDate extends Component {
     this.props.onChange(dateTime);
   }
 
+  componentWillReceiveProps(props) {
+    const { refresh } = this.props;
+    if (props.refresh !== refresh) {
+      console.log("teacher attendance refresh");
+      this.getAttendanceData();
+    }
+  }
+
   render() {
     return (
       <div className="form-group">
