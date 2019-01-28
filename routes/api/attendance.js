@@ -147,13 +147,13 @@ router.put("/:id", validateObjectId, async (req, res) => {
   const clonedStatus = originalAttendance.isPresent;
   let toggledStatus;
   if (clonedStatus === true) {
-    toggledStatus = false;
-  } else {
     toggledStatus = true;
+  } else {
+    toggledStatus = false;
   }
   const attendance = await Attendance.findByIdAndUpdate(req.params.id, {
     isPresent: toggledStatus
-  });
+  }).populate("studentId");
   res.send(attendance);
 });
 
