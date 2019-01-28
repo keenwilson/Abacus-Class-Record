@@ -1,44 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import './assets/css/home.css';
+import React, { Component } from "react";
+import ClassroomsCard from "../../classroomCard";
+import "./assets/css/home.css";
 
-const TeacherHome = props => {
-  const teacher = props.teacher;
-  const students = props.students;
-  const classroom = props.classroom;
-  return (
-    <React.Fragment>
+class TeacherHome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      classrooms: props.classrooms
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  getStudentsInfo() {
+    const currentClassroom = this.state.currentClassroom;
+    this.setState({
+      students: currentClassroom.studentsId
+    });
+  }
+
+  handleChange(classroomId) {
+    this.props.onChange(classroomId);
+  }
+
+  render() {
+    return (
+      <React.Fragment>
         <div className="abacus-container">
-            <div className="row">
-                <div className="col s12 m3">
-                    <div className="card-wrapper">
-                        <div className="card">
-                            <div className="card-image">
-                                <img src={classroom.imagePath} alt={classroom.subject}/>
-                            </div>
-                            <div className="card-content">
-                                <span className="card-title">Subject: {classroom.subject}</span>
-                                <p><strong>Room:</strong> {classroom.roomNumber}</p>
-                                <p><strong>Teacher:</strong> {teacher.firstName} {teacher.lastName} {teacher.email}</p>
-                                <hr/>
-                                <p><strong>Students:</strong></p>
-                                <ul>
-                                    {students.map((student, i) => (
-                                        <li key={i} value={student._id}>
-                                            {student.firstName} {student.lastName}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="card-action">
-                                <Link to="/teacher/attendance">Check Attendance</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div className="row">
+            {this.props.classrooms.map((classroom, i) => (
+              <ClassroomsCard
+                key={classroom._id}
+                name={classroom.subject}
+                value={classroom._id}
+                classroom={classroom}
+                teacher={classroom.teacherId}
+                students={classroom.studentsId}
+                onChange={this.handleChange}
+              />
+            ))}
+          </div>
         </div>
-    </React.Fragment>
-  );
-};
+      </React.Fragment>
+    );
+  }
+}
+
 export default TeacherHome;
