@@ -1,3 +1,30 @@
-html {
-  background: #fff;
+.abacus-container {
+  padding: 25px 25px 0 25px;
+
+  .row {
+
+    .col {
+      padding: 0;
+
+
+      .card-wrapper {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        max-height: 82vh;
+        padding: 0;
+
+        .card {
+          margin: 0;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          .card-content {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
 }

@@ -8,6 +8,7 @@ import authService from "../services/authService";
 import Oops from "../components/Oops";
 import AdminContainer from "./adminContainer";
 import TeacherContainer from "./teachersContainer";
+import '../components/assets/font-awesome/css/all.css';
 
 class MainContainer extends Component {
   constructor(props) {
