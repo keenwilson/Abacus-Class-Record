@@ -15,9 +15,9 @@ class ClassroomsCard extends Component {
   }
 
   handleClick() {
-    this.setState({
-      isSelect: true
-    });
+    this.setState(prevState => ({
+      isSelect: !prevState.isSelect
+    }));
     const clickedClassroomId = this.state.classroom._id;
     console.log("card handleClick", clickedClassroomId);
     this.props.onChange(clickedClassroomId);
@@ -58,8 +58,14 @@ class ClassroomsCard extends Component {
               </ul>
             </div>
             <div className="card-action">
-              <button onClick={this.handleClick} className="browser-default">
-                Select actions for this class
+              <button
+                key={this.state.classroom._id + "_" + this.state.isSelect}
+                onClick={this.handleClick}
+                className="browser-default"
+              >
+                {this.state.isSelect
+                  ? "Close Actions"
+                  : "Select actions for this class"}
               </button>
               {this.state.isSelect && <SelectClassroom />}
             </div>
