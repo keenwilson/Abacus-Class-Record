@@ -1,8 +1,106 @@
-.abacus-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body {
+  background: url('../../../../assets/images/teachers-background.jpg') center center no-repeat;
+  background-position-y: bottom;
+  background-attachment: fixed;
+  height: 100vh;
 }
-html {
-   background: #fff;
- }
+
+nav {
+  height: 95px;
+  line-height: 95px;
+  border-bottom: 5px solid #E6877C;
+  font-family: Futura, sans-serif;
+  background-color: transparent;
+
+  .nav-wrapper {
+    background: rgba(225, 225, 225, .75);
+
+    .fa-bars {
+      margin: 13px 0 0 20px
+    }
+
+    .brand-logo  {
+      line-height: 14px;
+
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      a {
+        color: #343434;
+      }
+
+      .fa-abacus {
+        font-size: 3rem;
+        margin-left: 24px;
+      }
+
+      @media screen and (max-width: 600px) {
+        padding-top: 10px;
+      }
+    }
+
+    ul {
+      padding-left: 20px;
+
+      li {
+        padding: 0 15px;
+
+        .fa, .far, .fal {
+          margin-top: 15px;
+
+          @media screen and (max-width: 600px) {
+            margin:0 10px 0 0;
+          }
+        }
+
+        .fa-bullhorn {
+          color: #E6877C;
+        }
+
+        .fa-file-alt {
+          color: #31657D;
+        }
+
+        .fa-book {
+          color: #799FB0;
+        }
+
+        select {
+          margin: 28px 20px 0 0;
+          height: 32px;
+          width: 275px;
+          border-radius: 6px;
+        }
+
+        a {
+          color: #343434;
+        }
+      }
+
+      @media screen and (max-width: 800px) {
+        padding: 10px 0 0 5px;
+        li {
+          padding: 0 5px;
+        }
+      }
+    }
+
+    //.nav-icons {
+    //  li:nth-child(3) {
+    //    &::before {
+    //      font-family: "FontAwesome";
+    //      content: "\f02d";
+    //    }
+    //  }
+    //}
+
+    .fa-bars {
+      color: #343434;
+    }
+  }
+}
+
+.sidenav li > a > i {
+  float: none;
+}

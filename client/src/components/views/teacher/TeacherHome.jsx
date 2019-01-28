@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './assets/css/home.css';
 
 const TeacherHome = props => {
   const teacher = props.teacher;
@@ -7,30 +8,36 @@ const TeacherHome = props => {
   const classroom = props.classroom;
   return (
     <React.Fragment>
-      <h1>This is teacher container's homepage</h1>
-      <p>Display Information of selected classroom here</p>
-      <p>Subject: {classroom.subject}</p>
-      <p>Room: {classroom.roomNumber}</p>
-      <img
-        src={classroom.imagePath}
-        alt={classroom.subject}
-        width="200"
-        height="150"
-      />
-      <p>
-        Teacher: {teacher.firstName} {teacher.lastName} {teacher.email}
-      </p>
-      <p>Students in class</p>
-      <ul>
-        {students.map((student, i) => (
-          <li key={i} value={student._id}>
-            {student.firstName} {student.lastName}
-          </li>
-        ))}
-      </ul>
-      <p>
-        <Link to="/teacher/attendance">Check Attendance</Link>
-      </p>
+        <div className="abacus-container">
+            <div className="row">
+                <div className="col s12 m3">
+                    <div className="card-wrapper">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={classroom.imagePath} alt={classroom.subject}/>
+                            </div>
+                            <div className="card-content">
+                                <span className="card-title">Subject: {classroom.subject}</span>
+                                <p><strong>Room:</strong> {classroom.roomNumber}</p>
+                                <p><strong>Teacher:</strong> {teacher.firstName} {teacher.lastName} {teacher.email}</p>
+                                <hr/>
+                                <p><strong>Students:</strong></p>
+                                <ul>
+                                    {students.map((student, i) => (
+                                        <li key={i} value={student._id}>
+                                            {student.firstName} {student.lastName}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="card-action">
+                                <Link to="/teacher/attendance">Check Attendance</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </React.Fragment>
   );
 };

@@ -17,21 +17,52 @@ class AbacusNavbar extends Component {
 
   render() {
     return (
-      <nav className="abacus-nav">
-        <h1>Teacher Nav for </h1>
+        <div>
+            <nav>
+                <div className="nav-wrapper">
+                    <span className="brand-logo center">
+                        <Link to="/teacher/">
+                            <i className="far fa-abacus"></i><br/>
+                            Abacus
+                        </Link>
+                    </span>
+                    <a href="#" data-target="sidenav" className="sidenav-trigger"><i className="fa fa-bars"></i></a>
+                    <ul id="nav-mobile" className="left hide-on-med-and-down nav-icons">
+                        <li><Link to="/teacher/attendance"><i className="far fa-bullhorn left"></i> Attendance</Link></li>
+                        <li><Link to="/teacher/assignments"><i className="fal fa-file-alt left"></i>Assignments</Link></li>
+                        <li><Link to="/teacher/grades"><i className="far fa-book left"></i>Grade Book</Link></li>
+                    </ul>
+                    <ul className="right hide-on-med-and-down">
+                        <li>
+                            <select onChange={this.handleChange} className="browser-default">
+                                <option>Select Class</option>
+                                {this.props.classrooms.map((classroom, i) => (
+                                    <option key={i} value={classroom._id}>
+                                        {classroom.subject}
+                                    </option>
+                                ))}
+                            </select>
+                        </li>
+                    </ul>
+                    <ul className="sidenav" id="sidenav">
+                        <li><Link to="/teacher/attendance"><i className="far fa-bullhorn"></i> Attendance</Link></li>
+                        <li><Link to="/teacher/assignments"><i className="fal fa-file-alt"></i> Assignments</Link></li>
+                        <li><Link to="/teacher/grades"><i className="far fa-book"></i> Grade Book</Link></li>
+                        <li>
+                            <select onChange={this.handleChange} className="browser-default">
+                                <option>Select Class</option>
+                                {this.props.classrooms.map((classroom, i) => (
+                                    <option key={i} value={classroom._id}>
+                                        {classroom.subject}
+                                    </option>
+                                ))}
+                            </select>
+                        </li>
+                    </ul>
 
-        <select onChange={this.handleChange}>
-          <option>Select Class</option>
-          {this.props.classrooms.map((classroom, i) => (
-            <option key={i} value={classroom._id}>
-              {classroom.subject}
-            </option>
-          ))}
-        </select>
-        <Link to="/teacher/attendance">Attendance</Link>
-        <Link to="/teacher/assignments">Assignments</Link>
-        <Link to="/teacher/grades">Grade</Link>
-      </nav>
+                </div>
+            </nav>
+        </div>
     );
   }
 }
