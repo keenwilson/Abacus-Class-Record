@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 import SelectClassroom from "./selectClassroom";
 
 class ClassroomsCard extends Component {
@@ -11,6 +10,7 @@ class ClassroomsCard extends Component {
       classroom: props.classroom,
       isSelect: false
     };
+
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -19,7 +19,6 @@ class ClassroomsCard extends Component {
       isSelect: !prevState.isSelect
     }));
     const clickedClassroomId = this.state.classroom._id;
-    console.log("card handleClick", clickedClassroomId);
     this.props.onChange(clickedClassroomId);
   }
 

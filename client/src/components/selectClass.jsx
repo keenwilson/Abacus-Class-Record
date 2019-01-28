@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SelectClassroom extends Component {
+class SelectClass extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -31,4 +31,4 @@ class SelectClassroom extends Component {
   }
 }
 
-export default SelectClassroom;
+export default SelectClass;

@@ -58,7 +58,6 @@ export default {
 
   // Get specific Classroom
   getClassroom: function(classroomId) {
-    console.log("classroom id:", classroomId);
     return axios.get("/api/classrooms/" + classroomId);
   },
 
