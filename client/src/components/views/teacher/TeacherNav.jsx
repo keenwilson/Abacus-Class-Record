@@ -28,6 +28,7 @@ class AbacusNavbar extends Component {
             </option>
           ))}
         </select>
+        <Link to="/teacher/">Home</Link>
         <Link to="/teacher/attendance">Attendance</Link>
         <Link to="/teacher/assignments">Assignments</Link>
         <Link to="/teacher/grades">Grade</Link>
