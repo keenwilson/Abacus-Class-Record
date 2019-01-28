@@ -6,6 +6,7 @@ import DatePicker from "../../datePicker";
 class TeacherAttendance extends Component {
   constructor(props) {
     super(props);
+    console.log("attendance is loaded");
     this.state = {
       classroom: props.classroom,
       classroomId: props.classroom._id,

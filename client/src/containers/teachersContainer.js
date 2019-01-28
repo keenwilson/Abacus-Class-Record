@@ -40,7 +40,6 @@ class TeacherContainer extends Component {
   async changeClassroom(classroomId) {
     await API.getClassroom(classroomId)
       .then(res => {
-        console.log("change to new classroom", res.data);
         this.setState({
           currentClassroom: res.data
         });
@@ -134,6 +133,7 @@ class TeacherContainer extends Component {
                 classroom={this.state.currentClassroom}
                 teacher={this.state.teacher}
                 students={this.state.students}
+                classrooms={this.state.classrooms}
               />
             )}
           />
