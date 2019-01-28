@@ -134,6 +134,7 @@ class TeacherContainer extends Component {
                 teacher={this.state.teacher}
                 students={this.state.students}
                 classrooms={this.state.classrooms}
+                onChange={this.changeClassroom}
               />
             )}
           />

@@ -8,6 +8,7 @@ class TeacherHome extends Component {
     this.state = {
       classrooms: props.classrooms
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getStudentsInfo() {
@@ -15,6 +16,10 @@ class TeacherHome extends Component {
     this.setState({
       students: currentClassroom.studentsId
     });
+  }
+
+  handleChange(classroomId) {
+    this.props.onChange(classroomId);
   }
 
   render() {
@@ -30,6 +35,7 @@ class TeacherHome extends Component {
                 classroom={classroom}
                 teacher={classroom.teacherId}
                 students={classroom.studentsId}
+                onChange={this.handleChange}
               />
             ))}
           </div>
