@@ -59,7 +59,6 @@ class AbacusNavbar extends Component {
                             </select>
                         </li>
                     </ul>
-
                 </div>
             </nav>
         </div>

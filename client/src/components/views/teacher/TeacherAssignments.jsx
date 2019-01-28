@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 
 class TeacherAssignments extends Component {
-    state = {};
-
-    render() {
-        return (
-            <div>
-                <h1> Teacher Assignments</h1>
-            </div>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      classroom: props.classroom,
+      teacher: props.teacher,
+      students: props.students,
+      assignments: []
+    };
+  }
+  render() {
+    return (
+      <div>
+        {this.state.classroom && (
+          <div>
+            <p>Assignments of {this.state.classroom.subject}</p>
+            <p>
+              Teacher: {this.state.teacher.name} {this.state.teacher.email}
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default TeacherAssignments;
