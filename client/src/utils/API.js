@@ -84,13 +84,6 @@ export default {
   // by using classroomId as id and classDate with a format "YYYY-MM-DD"
   // studentId and classroomId will be populated with firstName, lastName, and subject
   getAttendances: function(classroomId, classDate) {
-    console.log(
-      "Axios get api/attendance classroomID:",
-      classroomId,
-      "classDate:",
-      classDate
-    );
-    console.log("/api/attendance/" + classroomId + "/" + classDate);
     return axios
       .get("/api/attendance/" + classroomId + "/" + classDate)
       .catch(function(error) {
@@ -135,5 +128,23 @@ export default {
   // Delete an attendance of a student into a classroom/classDate
   deleteAttendance: function(attendanceId) {
     return axios.delete("/api/attendance/" + attendanceId);
+  },
+
+  // Create an assignment
+  createAssignment: function(assignmentData) {
+    return axios.post("/api/assignments", assignmentData);
+  },
+
+  // Get an assignment in that class
+  getAssignments: function(classroomId) {
+    return axios.get("/api/assignments/" + classroomId);
+  },
+
+  updateAssignment: function(assignmentId, assignmentData) {
+    return axios.put("/api/assignments/" + assignmentId, assignmentData);
+  },
+
+  deleteAssignment: function(assignmentId) {
+    return axios.delete("/api/assignments/" + assignmentId);
   }
 };
