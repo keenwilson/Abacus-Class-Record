@@ -24,7 +24,7 @@ const gradeSchema = new mongoose.Schema(
     },
     weight: {
       $type: Number,
-      default: 1
+      default: 10
     },
     status: {
       $type: String
