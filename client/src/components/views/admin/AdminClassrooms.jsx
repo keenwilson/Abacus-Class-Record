@@ -8,9 +8,11 @@ class AdminClassrooms extends Component {
   };
   render() {
     const { user } = this.props;
+    const css = require('./assets/css/Classrooms.css').toString();
 
     return (
       <Container fluid>
+        <style>${this.css}</style>
         <Row>
           <Col size="md-5">
             <h1 className="text-center">Classrooms</h1>

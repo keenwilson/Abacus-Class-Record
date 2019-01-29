@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../../common/Grid";
-const moment = require('moment')
+const moment = require('moment');
 
 class AdminAssignments extends Component {
   state = {
@@ -12,11 +12,12 @@ class AdminAssignments extends Component {
 
   };
 
-
-
   render() {
+      const css = require('./assets/css/Assignments.css').toString();
+
     return (
       <Container fluid>
+          <style>${this.css}</style>
         <Row>
         <h1 className="text-center">Assignments</h1>
                         <h2 className="text-center">Add New Assignment</h2>

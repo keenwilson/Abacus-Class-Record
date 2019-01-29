@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 class TeacherAssignments extends Component {
   constructor(props) {
+    const css = require('./assets/css/assignments.css').toString();
+
     super(props);
     this.state = {
       classroom: props.classroom,
@@ -13,6 +15,7 @@ class TeacherAssignments extends Component {
   render() {
     return (
       <div>
+        <style>${this.css}</style>
         {this.state.classroom && (
           <div>
             <p>Assignments of {this.state.classroom.subject}</p>
