@@ -41,9 +41,10 @@ class TeacherContainer extends Component {
     await API.getClassroom(classroomId)
       .then(res => {
         this.setState({
-          currentClassroom: res.data
+          currentClassroom: res.data,
+          teacher: res.data.teacherId
         });
-        this.getTeacherInfo();
+        // this.getTeacherInfo();
         this.getStudentsInfo();
         this.refreshClassroom();
       })
@@ -56,16 +57,9 @@ class TeacherContainer extends Component {
 
   getTeacherInfo() {
     const currentClassroom = this.state.currentClassroom;
-    const teacherFirstname = currentClassroom.teacherId.firstName;
-    const teacherLastname = currentClassroom.teacherId.lastName;
-    const teacher = {
-      name: teacherFirstname + " " + teacherLastname,
-      email: currentClassroom.teacherId.email,
-      teacherId: currentClassroom.teacherId._id
-    };
 
     this.setState({
-      teacher: teacher
+      teacher: currentClassroom.teacherId
     });
   }
 
@@ -131,7 +125,7 @@ class TeacherContainer extends Component {
                 {...props}
                 user={this.state.user}
                 classroom={this.state.currentClassroom}
-                teacher={this.state.teacher}
+                currentTeacher={this.state.teacher}
                 students={this.state.students}
                 classrooms={this.state.classrooms}
                 onChange={this.changeClassroom}
