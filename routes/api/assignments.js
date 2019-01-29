@@ -1,10 +1,48 @@
 const Assignment = require("../../models/assignment");
+const Grade = require("../../models/grade");
 const auth = require("../../middleware/auth");
 const express = require("express");
 const router = express.Router();
 const Classroom = require("../../models/classroom");
 const Student = require("../../models/student");
 const moment = require("moment");
+
+router.post("/", async (req, res) => {
+  const dueDate = req.body.dueDate;
+  const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
+  const newDueDate = parsedDueDate.toDate();
+  console.log("newDueDate", newDueDate);
+
+  Classroom.findById(req.body.classroomId, async function(err, classroom) {
+    const currentClassroomId = classroom._id;
+    const studentsInClass = classroom.studentsId;
+    // Create assignment for that classroom
+    const { _id: assignmentId } = await new Assignment({
+      assignmentName: req.body.assignmentName,
+      assignmentType: req.body.assignmentType,
+      assignmentDesc: req.body.assignmentDesc,
+      classroomId: currentClassroomId,
+      dueDate: newDueDate,
+      maxScore: req.body.maxScore
+    }).save();
+
+    try {
+      for (let student of studentsInClass) {
+        const { _id: gradeId } = await new Grade({
+          studentId: student,
+          classroomId: currentClassroomId,
+          assignmentId: assignmentId,
+          weight: req.body.weight,
+          status: "Pending"
+        }).save();
+        console.log("create grade id: ", gradeId);
+      }
+      res.status(200).send(`The assignment is created with id ${assignmentId}`);
+    } catch (error) {
+      res.status(400).send("Invalid Assignment Id");
+    }
+  });
+});
 
 router.get("/", async (req, res) => {
   const assignment = await Assignment.find()
@@ -13,35 +51,6 @@ router.get("/", async (req, res) => {
   const studentsInClass = Classroom.studentId;
   studentsInClass.map(this.assignment);
   res.send(assignment);
-});
-
-router.post("/", async (req, res) => {
-  const classDate = req.body.classDate;
-  const parsedClassDate = moment(classDate, "YYYY-MM-DD");
-  const newClassDate = parsedClassDate.toDate();
-  console.log(newClassDate);
-
-  Classroom.findById(req.body.classroomId, async function(err, classroom) {
-    const studentsInClass = Classroom.studentsId;
-    const currentClassroomId = classroom._id;
-    try {
-      for (let student of studentsInClass) {
-        const { _id: assignmentId } = await new Assignment({
-          classroomId: currentClassroomId,
-          studentId: student,
-          classDate: newClassDate,
-          assignmentName: req.body.assignmentName,
-          assignmentDesc: req.body.assignmentDesc,
-          assignmentType: req.body.assignmentType,
-          dateSubmited: req.body.dateSubmitted,
-          dueDate: moment(req.body.assignmentDueDate, 'MM / DD / YYYY')
-        }).save();
-      }
-      res.status(200).send(assignment);
-    } catch (error) {
-      res.status(400).send("Invalid Assignment Id");
-    }
-  });
 });
 
 router.put("/:id", async (req, res) => {

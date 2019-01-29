@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const AssignmentType = require("./assignmentType");
 
 const assignmentSchema = new mongoose.Schema(
   {
     assignmentName: {
       $type: String,
-      required: true
+      required: true,
+      trim: true,
+      minlength: 5,
+      maxlength: 255
     },
     assignmentType: {
       $type: String,
@@ -13,44 +17,22 @@ const assignmentSchema = new mongoose.Schema(
     },
     assignmentDesc: {
       $type: String,
+      trim: true
     },
     classroomId: {
       $type: Schema.Types.ObjectId,
       ref: "Classroom"
     },
-    studentId: {
-      $type: Schema.Types.ObjectId,
-      required: true
-    },
     dueDate: {
-      $type: Number
+      $type: Date
     },
-    dateSubmitted: {
+    maxScore: {
       $type: Number,
-    },
-    students: [
-      {
-        $type: Schema.Types.ObjectId,
-        ref: 'Student',
-      }],
-      grade: {
-        $type: Number
-      },
-    commentBody: { $type: String }
+      default: 10
+    }
   },
   { typeKey: "$type" }
 );
-
-assignmentSchema.statics.lookup = function (studentId, classroomId) {
-  return this.findOne({
-    "student._id": studentId,
-    "classroom._id": classroomId
-  });
-};
-
-assignmentSchema.methods.submit = function () {
-  this.dateSubmitted = new Date();
-};
 
 const Assignment = mongoose.model("Assignment", assignmentSchema);
 module.exports = Assignment;

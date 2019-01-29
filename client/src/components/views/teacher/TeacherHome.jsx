@@ -6,18 +6,27 @@ class TeacherHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classrooms: props.classrooms
+      classrooms: props.classrooms,
+      classroom: props.classroom,
+      currentTeacher: props.currentTeacher,
+      students: props.students
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getStudentsInfo() {
-    const currentClassroom = this.state.currentClassroom;
-    this.setState({
-      students: currentClassroom.studentsId
-    });
-  }
+  // getStudentsInfo() {
+  //   const currentClassroom = this.state.classroom;
+  //   this.setState({
+  //     students: currentClassroom.studentsId
+  //   });
+  // }
 
+  // getTeacherInfo() {
+  //   const currentClassroom = this.state.classroom;
+  //   this.setState({
+  //     teacher: currentClassroom.teacherId
+  //   });
+  // }
   handleChange(classroomId) {
     this.props.onChange(classroomId);
   }
@@ -33,7 +42,6 @@ class TeacherHome extends Component {
                 name={classroom.subject}
                 value={classroom._id}
                 classroom={classroom}
-                teacher={classroom.teacherId}
                 students={classroom.studentsId}
                 onChange={this.handleChange}
               />

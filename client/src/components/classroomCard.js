@@ -4,8 +4,8 @@ import SelectClassroom from "./selectClassroom";
 class ClassroomsCard extends Component {
   constructor(props) {
     super(props);
+    console.log("classroom card props", props);
     this.state = {
-      teacher: props.teacher,
       students: props.students,
       classroom: props.classroom,
       isSelect: false
@@ -27,7 +27,8 @@ class ClassroomsCard extends Component {
   }
 
   render() {
-    const { classroom, teacher, students } = this.state;
+    const { classroom, students } = this.state;
+
     return (
       <div className="col s12 m3">
         <div className="card-wrapper">
@@ -40,10 +41,7 @@ class ClassroomsCard extends Component {
               <p>
                 <strong>Room:</strong> {classroom.roomNumber}
               </p>
-              <p>
-                <strong>Teacher:</strong> {teacher.firstName} {teacher.lastName}{" "}
-                {teacher.email}
-              </p>
+
               <hr />
               <p>
                 <strong>Students:</strong>
