@@ -7,6 +7,7 @@ const Classroom = require("../../models/classroom");
 const Student = require("../../models/student");
 const moment = require("moment");
 
+// Create an assignment
 router.post("/", async (req, res) => {
   const dueDate = req.body.dueDate;
   const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
@@ -17,14 +18,18 @@ router.post("/", async (req, res) => {
     const currentClassroomId = classroom._id;
     const studentsInClass = classroom.studentsId;
     // Create assignment for that classroom
-    const { _id: assignmentId } = await new Assignment({
+    const assignment = await new Assignment({
+      classroomId: currentClassroomId,
       assignmentName: req.body.assignmentName,
       assignmentType: req.body.assignmentType,
       assignmentDesc: req.body.assignmentDesc,
-      classroomId: currentClassroomId,
-      dueDate: newDueDate,
-      maxScore: req.body.maxScore
+      maxScore: req.body.maxScore,
+      weight: req.body.weight,
+      dueDate: newDueDate
     }).save();
+
+    const assignmentId = assignment._id;
+    const assignmentWeight = assignment.weight;
 
     try {
       for (let student of studentsInClass) {
@@ -32,8 +37,7 @@ router.post("/", async (req, res) => {
           studentId: student,
           classroomId: currentClassroomId,
           assignmentId: assignmentId,
-          weight: req.body.weight,
-          status: "Pending"
+          weight: assignmentWeight
         }).save();
         console.log("create grade id: ", gradeId);
       }
@@ -44,24 +48,36 @@ router.post("/", async (req, res) => {
   });
 });
 
-router.get("/", async (req, res) => {
-  const assignment = await Assignment.find()
+// See all assignments in that class
+router.get("/:id", async (req, res) => {
+  const assignment = await Assignment.find({
+    classroomId: req.params.id
+  })
     .select("-__v")
-    .sort("assignmentType");
-  const studentsInClass = Classroom.studentId;
-  studentsInClass.map(this.assignment);
+    .sort("dueDate")
+    .populate({
+      path: "classroomId"
+    });
+
   res.send(assignment);
 });
 
+// Update the assignment with assignmentId
 router.put("/:id", async (req, res) => {
+  const dueDate = req.body.dueDate;
+  const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
+  const newDueDate = parsedDueDate.toDate();
+  console.log("newDueDate", newDueDate);
+
   const assignment = await assignment.findByIdAndUpdate(
     req.params.id,
     {
+      dueDate: newDueDate,
       assignmentName: req.body.assignmentName,
-      assignmentDesc: req.body.assignmentDesc,
       assignmentType: req.body.assignmentType,
-      startDate: req.body.assignmentStartDate,
-      dueDate: req.body.assignmentDueDate
+      assignmentDesc: req.body.assignmentDesc,
+      maxScore: req.body.maxScore,
+      weight: req.body.weight
     },
     { new: true }
   );
@@ -85,7 +101,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const assignment = await Assignment.findById(req.params.id).select("-__v");
+  const assignment = await Assignment.findByIdAndRemove(req.params.id);
   if (!assignment)
     return res
       .status(404)
