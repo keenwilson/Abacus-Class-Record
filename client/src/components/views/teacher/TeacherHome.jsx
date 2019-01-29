@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import ClassroomsCard from "../../classroomCard";
-import "./assets/css/home.css";
 
 class TeacherHome extends Component {
   constructor(props) {
+    const css = require('./assets/css/navbar.css').toString();
+
     super(props);
     this.state = {
       classrooms: props.classrooms
@@ -25,6 +26,7 @@ class TeacherHome extends Component {
   render() {
     return (
       <React.Fragment>
+        <style>${this.css}</style>
         <div className="abacus-container">
           <div className="row">
             {this.props.classrooms.map((classroom, i) => (
