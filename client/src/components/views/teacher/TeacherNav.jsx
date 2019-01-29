@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./assets/css/navbar.css";
 
 class AbacusNavbar extends Component {
   constructor(props) {
     super(props);
+
+    const css = require('./assets/css/navbar.css').toString();
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -18,6 +19,7 @@ class AbacusNavbar extends Component {
   render() {
     return (
       <div>
+        <style>${this.css}</style>
         <nav>
           <div className="nav-wrapper">
             <span className="brand-logo center">

@@ -5,6 +5,8 @@ import DatePicker from "../../datePicker";
 
 class TeacherAttendance extends Component {
   constructor(props) {
+    const css = require('./assets/css/attendance.css').toString();
+
     super(props);
     console.log("attendance is loaded");
     this.state = {
@@ -52,6 +54,7 @@ class TeacherAttendance extends Component {
     // const studentsAttendance = this.state.attendanceList;
     return (
       <div>
+        <style>${this.css}</style>
         {this.state.classroom && (
           <div>
             <p>
