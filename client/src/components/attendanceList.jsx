@@ -10,7 +10,8 @@ class AttendanceList extends Component {
     this.state = {
       classroomId: props.classroomId,
       classDate: props.classDate,
-      attendanceList: props.attendanceList
+      attendanceList: props.attendanceList,
+      totalMissing:0
     };
     this.getAttendanceData = this.getAttendanceData.bind(this);
   }
@@ -52,6 +53,16 @@ class AttendanceList extends Component {
         console.log(res.data);
       })
       .catch(err => console.log(err));
+  }
+
+  async attendanceCount() {
+    this.state.attendanceList.map(function(a,i) {
+      const isPresent = a.isPresent
+      if(isPresent === false) {
+        this.state.totalMissing++
+      }
+    })
+    return this.state.totalMissing
   }
 
   render() {
