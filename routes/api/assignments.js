@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   console.log(newClassDate);
 
   Classroom.findById(req.body.classroomId, async function(err, classroom) {
-    const studentsInClass = classroom.studentsId;
+    const studentsInClass = Classroom.studentsId;
     const currentClassroomId = classroom._id;
     try {
       for (let student of studentsInClass) {
@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
           assignmentDesc: req.body.assignmentDesc,
           assignmentType: req.body.assignmentType,
           dateSubmited: req.body.dateSubmitted,
-          dueDate: moment(req.body.assignmentDueDate, MM / DD / YYYY)
+          dueDate: moment(req.body.assignmentDueDate, 'MM / DD / YYYY')
         }).save();
       }
       res.status(200).send(assignment);
