@@ -146,5 +146,29 @@ export default {
 
   deleteAssignment: function(assignmentId) {
     return axios.delete("/api/assignments/" + assignmentId);
+  },
+
+  // Get a list of grades for an assignment
+  getGrades: function(assignmentId) {
+    return axios.get("/api/grades/assignment/" + assignmentId);
+  },
+
+  // Get a list of grades for a student
+  getGradesOfStudent: function(studentId) {
+    return axios.get("/api/grades/student/" + studentId);
+  },
+
+  // Create grades for all students in class with classroomId and assignmentId
+  createGrades: function(gradeData) {
+    return axios.post("/api/grades/", gradeData);
+  },
+
+  // Update grade, input is a number between 1-10
+  updateGrade: function(gradeId, gradeInput) {
+    return axios.put("/api/grades/" + gradeId, gradeInput);
+  },
+
+  deleteGrade: function(gradeId) {
+    return axios.delete("/api/grades/" + gradeId);
   }
 };
