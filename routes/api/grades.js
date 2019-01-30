@@ -23,6 +23,12 @@ router.get("/assignment/:id", async (req, res) => {
     .populate({
       path: "studentId"
     })
+    .populate({
+      path: "assignmentId"
+    })
+    .populate({
+      path: "classroomId"
+    })
     .sort("");
   res.send(grades);
 });
@@ -33,6 +39,12 @@ router.get("/student/:id", async (req, res) => {
     studentId: req.params.id
   })
     .select("-__v")
+    .populate({
+      path: "studentId"
+    })
+    .populate({
+      path: "assignmentId"
+    })
     .populate({
       path: "classroomId"
     })
@@ -75,7 +87,16 @@ router.put("/:id", async (req, res) => {
       grade: req.body.gradeInput
     },
     { new: true }
-  );
+  )
+    .populate({
+      path: "studentId"
+    })
+    .populate({
+      path: "assignmentId"
+    })
+    .populate({
+      path: "classroomId"
+    });
 
   if (!grade)
     return res.status(404).send("The grade with the given ID was not found.");
@@ -85,7 +106,16 @@ router.put("/:id", async (req, res) => {
 
 //Delete grade with gradeId
 router.delete("/:id", async (req, res) => {
-  const grade = await Grade.findByIdAndRemove(req.params.id);
+  const grade = await Grade.findByIdAndRemove(req.params.id)
+    .populate({
+      path: "studentId"
+    })
+    .populate({
+      path: "assignmentId"
+    })
+    .populate({
+      path: "classroomId"
+    });
   if (!Grade)
     return res.status(404).send("The Grade with the given ID was not found.");
 
@@ -94,7 +124,17 @@ router.delete("/:id", async (req, res) => {
 
 //Find grade with gradeId
 router.get("/:id", async (req, res) => {
-  const grade = await Grade.findById(req.params.id).select("-__v");
+  const grade = await Grade.findById(req.params.id)
+    .select("-__v")
+    .populate({
+      path: "studentId"
+    })
+    .populate({
+      path: "assignmentId"
+    })
+    .populate({
+      path: "classroomId"
+    });
   if (!Grade)
     return res.status(404).send("The Grade with the given ID was not found.");
 
