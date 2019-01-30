@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 // Create grade with classroomId
-// req.body needs classroomId
+// req.body needs classroomId and assignmentId
 router.post("/", async (req, res) => {
   Classroom.findById(req.body.classroomId, async function(err, classroom) {
     const studentsInClass = classroom.studentsId;
@@ -22,7 +22,8 @@ router.post("/", async (req, res) => {
       for (let student of studentsInClass) {
         const { _id: GradeId } = await new Grade({
           classroomId: currentClassroomId,
-          studentId: student
+          studentId: student,
+          assignmentId: req.body.assignmentId
         }).save();
       }
       res
