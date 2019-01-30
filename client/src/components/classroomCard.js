@@ -4,7 +4,6 @@ import SelectClassroom from "./selectClassroom";
 class ClassroomsCard extends Component {
   constructor(props) {
     super(props);
-    console.log("classroom card props", props);
     this.state = {
       students: props.students,
       classroom: props.classroom,

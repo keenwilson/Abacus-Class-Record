@@ -6,6 +6,7 @@ const studentsRoutes = require("./students");
 const teachersRoutes = require("./teachers");
 const attendaceRoutes = require("./attendance");
 const assignmentsRoutes = require("./assignments");
+const gradesRoutes = require("./grades");
 
 // Users routes
 router.use("/users", usersRoutes);
@@ -27,5 +28,8 @@ router.use("/attendance", attendaceRoutes);
 
 // Assignment Routes
 router.use("/assignments", assignmentsRoutes);
+
+// Assignment Routes
+router.use("/grades", gradesRoutes);
 
 module.exports = router;

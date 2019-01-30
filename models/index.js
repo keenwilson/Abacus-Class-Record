@@ -3,5 +3,6 @@ module.exports = {
   User: require("./user"),
   Student: require("./student"),
   Teacher: require("./teacher"),
-  Assignment: require("./assignment")
+  Assignment: require("./assignment"),
+  Grade: require("./grade")
 };
