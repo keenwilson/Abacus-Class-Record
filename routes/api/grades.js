@@ -1,7 +1,7 @@
 const Classroom = require("../../models/classroom");
-const Student = require("../../models/student");
-const Grade = require("../../models/Grade");
+
 const mongoose = require("mongoose");
+const Grade = mongoose.model("Grade");
 const express = require("express");
 const router = express.Router();
 
@@ -12,8 +12,7 @@ router.get("/assignment/:id", async (req, res) => {
   })
     .select("-__v")
     .populate({
-      path: "studentId",
-      select: "-teachersId"
+      path: "studentId"
     })
     .sort("");
   res.send(grades);
