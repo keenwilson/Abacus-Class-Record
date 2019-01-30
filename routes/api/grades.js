@@ -5,6 +5,15 @@ const Grade = mongoose.model("Grade");
 const express = require("express");
 const router = express.Router();
 
+//Find all grades with gradeId
+router.get("/:id", async (req, res) => {
+  const grade = await Grade.find();
+  if (!Grade)
+    return res.status(404).send("The Grade with the given ID was not found.");
+
+  res.send(grade);
+});
+
 // Find all grades with assignmentId /api/grades/assignment/:assignmentId
 router.get("/assignment/:id", async (req, res) => {
   const grades = await Grade.find({
