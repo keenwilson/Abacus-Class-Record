@@ -33,5 +33,4 @@ const gradeSchema = new mongoose.Schema(
   { typeKey: "$type" }
 );
 
-const Grade = mongoose.model("Grade", gradeSchema);
-module.exports = Grade;
+module.exports = mongoose.models.Grade || mongoose.model("Grade", gradeSchema);
