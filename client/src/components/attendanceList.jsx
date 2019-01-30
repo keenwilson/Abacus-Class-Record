@@ -11,7 +11,7 @@ class AttendanceList extends Component {
       classroomId: props.classroomId,
       classDate: props.classDate,
       attendanceList: props.attendanceList,
-      totalMissing:0
+      totalMissing: 0
     };
     this.getAttendanceData = this.getAttendanceData.bind(this);
   }
@@ -29,18 +29,10 @@ class AttendanceList extends Component {
     await API.getAttendances(classroomId, classDate)
       .then(res => {
         console.log(res.data);
-        this.setState(
-          {
-            attendanceList: res.data,
-            classDate: classDate
-          },
-          () => {
-            console.log(
-              "Get attendance data and update state:",
-              this.state.attendanceList
-            );
-          }
-        );
+        this.setState({
+          attendanceList: res.data,
+          classDate: classDate
+        });
       })
       .catch(err => console.log(err));
   }
@@ -56,13 +48,13 @@ class AttendanceList extends Component {
   }
 
   async attendanceCount() {
-    this.state.attendanceList.map(function(a,i) {
-      const isPresent = a.isPresent
-      if(isPresent === false) {
-        this.state.totalMissing++
+    this.state.attendanceList.map(function(a, i) {
+      const isPresent = a.isPresent;
+      if (isPresent === false) {
+        this.state.totalMissing++;
       }
-    })
-    return this.state.totalMissing
+    });
+    return this.state.totalMissing;
   }
 
   render() {

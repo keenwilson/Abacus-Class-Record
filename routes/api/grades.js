@@ -5,16 +5,36 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const grades = await Grade.find()
+// Find all grades with assignmentId /api/grades/assignment/:assignmentId
+router.get("/assignment/:id", async (req, res) => {
+  const grades = await Grade.find({
+    assignmentId: req.params.id
+  })
     .select("-__v")
-    .sort("currentGrade");
+    .populate({
+      path: "studentId",
+      select: "-teachersId"
+    })
+    .sort("");
   res.send(grades);
 });
 
+// Find all grades with studentId /api/grades/student/:studentId
+router.get("/student/:id", async (req, res) => {
+  const grades = await Grade.find({
+    studentId: req.params.id
+  })
+    .select("-__v")
+    .populate({
+      path: "classroomId"
+    })
+    .sort("");
+  res.send(grades);
+});
 // Create grade with classroomId
-// req.body needs classroomId
+// req.body needs classroomId and assignmentId
 router.post("/", async (req, res) => {
+  console.log(req.body);
   Classroom.findById(req.body.classroomId, async function(err, classroom) {
     const studentsInClass = classroom.studentsId;
     const currentClassroomId = classroom._id;
@@ -22,7 +42,8 @@ router.post("/", async (req, res) => {
       for (let student of studentsInClass) {
         const { _id: GradeId } = await new Grade({
           classroomId: currentClassroomId,
-          studentId: student
+          studentId: student,
+          assignmentId: req.body.assignmentId
         }).save();
       }
       res
@@ -38,11 +59,12 @@ router.post("/", async (req, res) => {
   });
 });
 
+//Update grade with gradeId in params and input in req.body
 router.put("/:id", async (req, res) => {
-  const Grade = await Grade.findByIdAndUpdate(
+  const grade = await Grade.findByIdAndUpdate(
     req.params.id,
     {
-      assignmentGrade: Assignment.grade
+      grade: req.body.gradeInput
     },
     { new: true }
   );
@@ -53,6 +75,7 @@ router.put("/:id", async (req, res) => {
   res.send(grade);
 });
 
+//Delete grade with gradeId
 router.delete("/:id", async (req, res) => {
   const grade = await Grade.findByIdAndRemove(req.params.id);
   if (!Grade)
@@ -61,6 +84,7 @@ router.delete("/:id", async (req, res) => {
   res.send(grade);
 });
 
+//Find grade with gradeId
 router.get("/:id", async (req, res) => {
   const grade = await Grade.findById(req.params.id).select("-__v");
   if (!Grade)

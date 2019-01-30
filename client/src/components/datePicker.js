@@ -19,7 +19,6 @@ class SelectDate extends Component {
   componentWillReceiveProps(props) {
     const { refresh } = this.props;
     if (props.refresh !== refresh) {
-      console.log("teacher attendance refresh");
       this.getAttendanceData();
     }
   }
