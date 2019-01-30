@@ -165,6 +165,7 @@ export default {
 
   // Update grade, input is a number between 1-10
   updateGrade: function(gradeId, gradeInput) {
+    console.log("updateGrade", gradeId, "grade input", gradeInput);
     return axios.put("/api/grades/" + gradeId, gradeInput);
   },
 

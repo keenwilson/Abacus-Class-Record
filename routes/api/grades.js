@@ -7,7 +7,10 @@ const router = express.Router();
 
 //Find all grades with gradeId
 router.get("/:id", async (req, res) => {
-  const grade = await Grade.find();
+  const grade = await Grade.findById(req.params.id, async function(err, found) {
+    console.log("Find grade by id", found);
+  });
+
   if (!Grade)
     return res.status(404).send("The Grade with the given ID was not found.");
 
@@ -101,6 +104,7 @@ router.put("/:id", async (req, res) => {
   if (!grade)
     return res.status(404).send("The grade with the given ID was not found.");
 
+  console.log(grade);
   res.send(grade);
 });
 
