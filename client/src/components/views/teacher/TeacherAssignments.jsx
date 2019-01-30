@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import API from "../../../utils/API";
 import AssignmentCard from "../../assignmentCard";
+import API from "../../../utils/API";
 
 class TeacherAssignments extends Component {
   constructor(props) {
@@ -61,9 +61,9 @@ class TeacherAssignments extends Component {
                 <AssignmentCard
                   key={item._id}
                   assignmentId={item._id}
-                  name={item.assignmentName}
+                  assignmentName={item.assignmentName}
                   assignmentType={item.assignmentType}
-                  description={item.assignmentDesc}
+                  assignmentDesc={item.assignmentDesc}
                   maxScore={item.maxScore}
                   dueDate={item.dueDate}
                   value={item._id}
