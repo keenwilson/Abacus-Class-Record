@@ -59,7 +59,6 @@ class GradeStudentRow extends Component {
                 value={this.state.currentGrade}
                 onChange={this.handleChange}
               />
-              <label for="grade_inline">Grade</label>
             </div>
             <button
               className="btn waves-effect waves-light"

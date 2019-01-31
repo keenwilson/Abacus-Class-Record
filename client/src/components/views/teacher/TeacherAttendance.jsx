@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import moment from "moment";
 import AttendanceList from "../../attendanceList";
 import DatePicker from "../../datePicker";
+import AttendanceOverview from "../../attendanceOverview";
 
 class TeacherAttendance extends Component {
   constructor(props) {
-    const css = require('./assets/css/attendance.css').toString();
+    const css = require("./assets/css/attendance.css").toString();
 
     super(props);
     console.log("attendance is loaded");
@@ -13,7 +14,8 @@ class TeacherAttendance extends Component {
       classroom: props.classroom,
       classroomId: props.classroom._id,
       classDate: moment().format("YYYY-MM-DD"),
-      attendanceList: []
+      attendanceList: [],
+      currentShowup: false
     };
 
     this.updateClassDate = this.updateClassDate.bind(this);
@@ -55,6 +57,7 @@ class TeacherAttendance extends Component {
     return (
       <div>
         <style>${this.css}</style>
+        <AttendanceOverview currentShowup={this.state.currentShowup} />
         {this.state.classroom && (
           <div>
             <p>
