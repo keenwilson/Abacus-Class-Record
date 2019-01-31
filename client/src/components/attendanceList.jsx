@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import ToggleStudent from "./toggleStudent";
 import ToggleClass from "./toggleClass";
+import API from "../utils/API";
 
 class AttendanceList extends Component {
   constructor(props) {
     super(props);
-    console.log("attendanceList receive props", props);
     this.state = {
       classroomId: props.classroomId,
       classDate: props.classDate,
@@ -14,6 +13,7 @@ class AttendanceList extends Component {
       totalMissing: 0
     };
     this.getAttendanceData = this.getAttendanceData.bind(this);
+    this.countAttendance = this.countAttendance.bind(this);
   }
   componentDidMount() {
     try {
@@ -36,6 +36,7 @@ class AttendanceList extends Component {
       })
       .catch(err => console.log(err));
   }
+
   async changeStatus(newStatus) {
     console.log("change student checkin status:", newStatus);
     const attendanceId = newStatus.attendanceId;
@@ -45,16 +46,6 @@ class AttendanceList extends Component {
         console.log(res.data);
       })
       .catch(err => console.log(err));
-  }
-
-  async attendanceCount() {
-    this.state.attendanceList.map(function(a, i) {
-      const isPresent = a.isPresent;
-      if (isPresent === false) {
-        this.state.totalMissing++;
-      }
-    });
-    return this.state.totalMissing;
   }
 
   render() {
