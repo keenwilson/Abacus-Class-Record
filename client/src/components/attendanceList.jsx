@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import ToggleStudent from "./toggleStudent";
+import ToggleClass from "./toggleClass";
+import CountStudents from "./countStudents";
+
 import API from "../utils/API";
 
 class AttendanceList extends Component {
