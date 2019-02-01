@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ToggleStudent from "./toggleStudent";
 import ToggleClass from "./toggleClass";
-import CountStudents from "./countStudents";
 
 import API from "../utils/API";
+import CountStudents from "./countStudents";
 
 class AttendanceList extends Component {
   constructor(props) {
@@ -66,38 +66,37 @@ class AttendanceList extends Component {
     return (
       <div className="">
         <h6>Class date: {this.state.classDate}</h6>
-        <h6>Checked In:{" "} <CountStudents attendanceList={this.state.attendanceList} /></h6>
 
         {/* Toggle Entire Class Button */}
-        <div class="card-toggle-class-button">
+        <div className="card-toggle-class-button">
           <ToggleClass
-              key={this.state.classroomId + "_" + this.state.classDate}
-              classroomId={this.state.classroomId}
-              classDate={this.state.classDate}
-              attendanceList={this.state.attendanceList}
+            key={this.state.classroomId + "_" + this.state.classDate}
+            classroomId={this.state.classroomId}
+            classDate={this.state.classDate}
+            attendanceList={this.state.attendanceList}
           />
         </div>
-
 
         {/* Class List*/}
         <div className="card-toggle-student-section">
           <ul>
             {this.state.attendanceList.map((attendance, i) => (
-                <li key={attendance._id + "_" + i} value={attendance._id}>
-                  <div className="student-row">
-                    <div className="student-name">
-                      {attendance.studentId.firstName} {attendance.studentId.lastName}
-                    </div>
-                    <div className="student-toggle">
-                      <ToggleStudent
-                          key={attendance._id + "_" + i}
-                          attendanceId={attendance._id}
-                          isPresent={attendance.isPresent}
-                          onChange={this.changeStatus}
-                      />
-                    </div>
+              <li key={attendance._id + "_" + i} value={attendance._id}>
+                <div className="student-row">
+                  <div className="student-name">
+                    {attendance.studentId.firstName}{" "}
+                    {attendance.studentId.lastName}
                   </div>
-                </li>
+                  <div className="student-toggle">
+                    <ToggleStudent
+                      key={attendance._id + "_" + i}
+                      attendanceId={attendance._id}
+                      isPresent={attendance.isPresent}
+                      onChange={this.changeStatus}
+                    />
+                  </div>
+                </div>
+              </li>
             ))}
           </ul>
         </div>
