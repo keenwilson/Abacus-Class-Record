@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 
 class ToggleClass extends Component {
   constructor(props) {
@@ -7,48 +6,35 @@ class ToggleClass extends Component {
     this.state = {
       classroomId: props.classroomId,
       classDate: props.classDate,
-      attendanceList: props.attendanceList
+      attendanceList: props.attendanceList,
+      classIsPresent: props.classIsPresent
     };
 
     // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
-    this.toggleClassAttendance = this.toggleClassAttendance.bind(this);
+    this.handleCheckIn = this.handleCheckIn.bind(this);
+    this.handleCheckOut = this.handleCheckOut.bind(this);
   }
 
-  handleClick() {
-    console.log("current state when click", this.state);
-    this.setState(prevState => ({
-      isPresent: !prevState.isPresent
-    }));
+  handleCheckIn() {
+    this.props.onClick(true);
   }
 
-  toggleClassAttendance() {
-    const classroomId = this.state.classroomId;
-    const classDate = this.state.classDate;
-    if (this.state.isPresent === true) {
-      console.log("Check in every one on class date:", classDate);
-      API.updateAttendancesCheckIn(classroomId, classDate)
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => console.log(err));
-    } else {
-      console.log("Check out every one on class date:", classDate);
-      API.updateAttendancesCheckOut(classroomId, classDate)
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => console.log(err));
-    }
+  handleCheckOut() {
+    this.props.onClick(false);
   }
 
   render() {
     return (
-      <button onClick={this.handleClick}>
-        {this.state.isPresent
-          ? "The whole class is checked in"
-          : "Check in all students"}
-      </button>
+      <React.Fragment>
+        {this.props.classIsPresent && (
+          <button onClick={this.handleCheckOut}>
+            The whole class is checked in
+          </button>
+        )}
+        {!this.props.classIsPresent && (
+          <button onClick={this.handleCheckIn}>Check in the whole class</button>
+        )}
+      </React.Fragment>
     );
   }
 }

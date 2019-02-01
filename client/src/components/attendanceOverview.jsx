@@ -7,7 +7,7 @@ import API from "../utils/API";
 class AttendanceOverview extends Component {
   constructor(props) {
     super(props);
-    console.log("AttendanceOverview Props", props);
+
     this.state = {
       attendanceList: props.attendanceList,
       showOverview: props.showOverview,
@@ -45,7 +45,6 @@ class AttendanceOverview extends Component {
 
     await API.getAttendances(classroomId, previousDay)
       .then(res => {
-        console.log(res.data);
         this.setState({
           attendanceListpreviousDay: res.data,
           previousDay: previousDay
@@ -74,7 +73,6 @@ class AttendanceOverview extends Component {
     const classroomId = this.state.classroomId;
     await API.getAttendances(classroomId, previousThreeDays)
       .then(res => {
-        console.log(res.data);
         this.setState({
           attendanceListpreviousThreeDays: res.data,
           previousThreeDays: previousThreeDays

@@ -5,7 +5,8 @@ class ToggleStudent extends Component {
     super(props);
     this.state = {
       attendanceId: props.attendanceId,
-      isPresent: props.isPresent
+      isPresent: props.isPresent,
+      classIsPresent: props.classIsPresent
     };
 
     // This binding is necessary to make `this` work in the callback
@@ -27,8 +28,8 @@ class ToggleStudent extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.isPresent && (
+      <React.Fragment>
+        {this.state.classIsPresent && (
           <div className="switch">
             <label>
               <input type="checkbox" checked onChange={this.handleClick} />
@@ -36,15 +37,27 @@ class ToggleStudent extends Component {
             </label>
           </div>
         )}
-        {!this.state.isPresent && (
-          <div className="switch">
-            <label>
-              <input type="checkbox" onChange={this.handleClick} />
-              <span className="lever" />
-            </label>
+        {!this.state.classIsPresent && (
+          <div>
+            {this.state.isPresent && (
+              <div className="switch">
+                <label>
+                  <input type="checkbox" checked onChange={this.handleClick} />
+                  <span className="lever" />
+                </label>
+              </div>
+            )}
+            {!this.state.isPresent && (
+              <div className="switch">
+                <label>
+                  <input type="checkbox" onChange={this.handleClick} />
+                  <span className="lever" />
+                </label>
+              </div>
+            )}
           </div>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }
