@@ -9,16 +9,18 @@ class TeacherAttendance extends Component {
     const css = require("./assets/css/attendance.css").toString();
 
     super(props);
-    console.log("attendance is loaded");
+
     this.state = {
       classroom: props.classroom,
       classroomId: props.classroom._id,
       classDate: moment().format("YYYY-MM-DD"),
       attendanceList: [],
-      currentShowup: false
+      showOverview: false,
+      studentsCount: 0
     };
 
     this.updateClassDate = this.updateClassDate.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -31,6 +33,10 @@ class TeacherAttendance extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.classDate !== nextState.classDate) {
       console.log("shouldComponentUpdate: classDate is changed");
+      return true;
+    }
+    if (this.state.showOverview !== nextState.showOverview) {
+      console.log("shouldComponentUpdate: showOverview is changed");
       return true;
     }
     if (this.props.classroom !== nextProps.classroom) {
@@ -52,12 +58,60 @@ class TeacherAttendance extends Component {
     this.setState({ refreshClassDate: !this.state.refreshClassDate });
   }
 
+  handleClick() {
+    this.setState(
+      prevState => ({
+        showOverview: !prevState.showOverview
+      }),
+      console.log(this.state.showOverview)
+    );
+  }
+
+  updateCurrentClass(updatedAttendanceList) {
+    this.setState(
+      {
+        attendanceList: updatedAttendanceList
+      },
+      console.log(this.state.attendanceList)
+    );
+  }
   render() {
     // const studentsAttendance = this.state.attendanceList;
     return (
       <div>
         <style>${this.css}</style>
-        <AttendanceOverview currentShowup={this.state.currentShowup} />
+
+        <button
+          className="waves-effect waves-light btn-small"
+          key={
+            this.state.classroomId +
+            "_" +
+            this.state.classDate +
+            "_" +
+            this.state.showOverview
+          }
+          onClick={this.handleClick}
+        >
+          {this.state.showOverview
+            ? "Close Attendance Overview"
+            : "Show Attendance Overview"}
+        </button>
+        {this.state.showOverview && (
+          <AttendanceOverview
+            key={
+              this.state.classroomId +
+              "_" +
+              this.state.showOverview +
+              "_" +
+              this.state.classDate
+            }
+            showOverview={this.state.showOverview}
+            attendanceList={this.state.attendanceList}
+            classroomId={this.state.classroomId}
+            classDate={this.state.classDate}
+          />
+        )}
+
         {this.state.classroom && (
           <div>
             <p>
@@ -69,7 +123,7 @@ class TeacherAttendance extends Component {
               key={this.state.classroomId + "_" + this.state.classDate}
               classroomId={this.state.classroomId}
               classDate={this.state.classDate}
-              attendanceList={this.state.attendanceList}
+              onClassUpdate={this.updateCurrentClass}
               refresh={this.refreshClassDate}
             />
           </div>
