@@ -69,7 +69,7 @@ class AttendanceList extends Component {
         <h6>Checked In:{" "} <CountStudents attendanceList={this.state.attendanceList} /></h6>
 
         {/* Toggle Entire Class Button */}
-        <div class="card-toggle-class-button">
+        <div className="card-toggle-class-button">
           <ToggleClass
               key={this.state.classroomId + "_" + this.state.classDate}
               classroomId={this.state.classroomId}
