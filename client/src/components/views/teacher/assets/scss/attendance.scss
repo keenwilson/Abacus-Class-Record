@@ -1,3 +1,76 @@
-html {
-  background: #fff;
+.row-overview {
+  position: absolute;
+  right: 0;
+
+}
+
+.abacus-container {
+  display: flex;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  height: calc(100vh - 95px);
+
+  .abacus-flex-card {
+    background: #fff;
+    width: 300px;
+    margin: 25px 0 0 25px;
+    border-radius: 6px;
+    padding: 10px;
+    max-height: calc(100vh - 175px);
+    overflow-y: scroll;
+    box-sizing: content-box;
+
+    .card-title {
+      h3 {
+        font-size: 24px;
+        margin: 0 0 20px 0;
+      }
+    }
+
+    .card-content {
+      padding: 10px;
+
+      .card-toggle-student-section {
+        background: #f5f5f5;
+        padding: 10px 0;
+
+        ul li:nth-child(even) {
+          background: #e0e0e0;
+        }
+
+        .student-row {
+          padding: 10px;
+          .student-name {
+            display: inline-block;
+            width: 80%;
+            margin-bottom: 15px;
+          }
+
+          .student-toggle {
+            display: inline-block;
+            width: 20%;
+          }
+        }
+      }
+    }
+
+    .card-toggle-class-button {
+      button {
+        width: 90%;
+        margin: 0 0 0 0;
+        background: #E6877C;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        transition: .5s;
+
+        &:hover {
+          background: darken(#E6877C, 15%);
+          cursor: pointer;
+          transition: .5s;
+        }
+      }
+    }
+  }
 }

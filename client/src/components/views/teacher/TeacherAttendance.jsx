@@ -78,57 +78,80 @@ class TeacherAttendance extends Component {
   render() {
     // const studentsAttendance = this.state.attendanceList;
     return (
-      <div>
-        <style>${this.css}</style>
+        <div>
+          <style>${this.css}</style>
 
-        <button
-          className="waves-effect waves-light btn-small"
-          key={
-            this.state.classroomId +
-            "_" +
-            this.state.classDate +
-            "_" +
-            this.state.showOverview
-          }
-          onClick={this.handleClick}
-        >
-          {this.state.showOverview
-            ? "Close Attendance Overview"
-            : "Show Attendance Overview"}
-        </button>
-        {this.state.showOverview && (
-          <AttendanceOverview
-            key={
-              this.state.classroomId +
-              "_" +
-              this.state.showOverview +
-              "_" +
-              this.state.classDate
-            }
-            showOverview={this.state.showOverview}
-            attendanceList={this.state.attendanceList}
-            classroomId={this.state.classroomId}
-            classDate={this.state.classDate}
-          />
-        )}
+          {/* Attendance Overview button and modal */}
+          <div className="row row-overview">
+            <a href="#modal-class-overview" class="modal-trigger">
+              <button
+                  className="waves-effect waves-light btn"
+                  key={
+                    this.state.classroomId +
+                    "_" +
+                    this.state.classDate +
+                    "_" +
+                    this.state.showOverview
+                  }
+                  onClick={this.handleClick}
+              >
+                {this.state.showOverview
+                    ? "Close Attendance Overview"
+                    : "Show Attendance Overview"}
+              </button>
+            </a>
 
-        {this.state.classroom && (
-          <div>
-            <p>
-              Attendance of {this.state.classroom.subject} on
-              {this.state.classDate}
-            </p>
-            <DatePicker onChange={this.updateClassDate} />
-            <AttendanceList
-              key={this.state.classroomId + "_" + this.state.classDate}
-              classroomId={this.state.classroomId}
-              classDate={this.state.classDate}
-              onClassUpdate={this.updateCurrentClass}
-              refresh={this.refreshClassDate}
-            />
+            {/* Modal */}
+            <div id="modal-class-overview" className="modal">
+              <div className="modal-content">
+                <h4>Classroom Overview</h4>
+                {this.state.showOverview && (
+                    <AttendanceOverview
+                        key={
+                          this.state.classroomId +
+                          "_" +
+                          this.state.showOverview +
+                          "_" +
+                          this.state.classDate
+                        }
+                        showOverview={this.state.showOverview}
+                        attendanceList={this.state.attendanceList}
+                        classroomId={this.state.classroomId}
+                        classDate={this.state.classDate}
+                    />
+                )}
+              </div>
+              <div className="modal-footer">
+                <a href="#!" className="modal-close waves-effect waves-green btn-flat">Okay</a>
+              </div>
+            </div>
           </div>
-        )}
-      </div>
+          {/* // END // */}
+
+          {/* Attendance Cards */}
+          <div className="abacus-container">
+            {this.state.classroom && (
+              <div className="abacus-flex-card card">
+                <div className="card-content">
+                  <div className="card-title">
+                    <h3>
+                      Class: {this.state.classroom.subject}<br/>
+                      Date: {this.state.classDate}
+                    </h3>
+                  </div>
+                  <DatePicker onChange={this.updateClassDate} />
+                  <AttendanceList
+                      key={this.state.classroomId + "_" + this.state.classDate}
+                      classroomId={this.state.classroomId}
+                      classDate={this.state.classDate}
+                      onClassUpdate={this.updateCurrentClass}
+                      refresh={this.refreshClassDate}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
     );
   }
 }
