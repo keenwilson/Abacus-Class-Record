@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ToggleStudent from "./toggleStudent";
 import ToggleClass from "./toggleClass";
 import API from "../utils/API";
-import CountStudents from "./countStudents";
 
 class AttendanceList extends Component {
   constructor(props) {
@@ -10,8 +9,7 @@ class AttendanceList extends Component {
     this.state = {
       classroomId: props.classroomId,
       classDate: props.classDate,
-      attendanceList: [],
-      refreshAttendaceList: false
+      attendanceList: []
     };
     this.getAttendanceData = this.getAttendanceData.bind(this);
     this.handleAttendanceData = this.handleAttendanceData.bind(this);
@@ -24,22 +22,7 @@ class AttendanceList extends Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log("updatedAttendanceList", this.state.attendanceList);
-    try {
-      if (this.state.attendanceList !== []) {
-        this.handleAttendanceData();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.refreshAttendaceList !== nextState.refreshAttendaceList) {
-      console.log("shouldComponentUpdate: refreshAttendaceList is changed");
-      return true;
-    }
     if (this.state.attendanceList !== nextState.attendanceList) {
       console.log("shouldComponentUpdate: attendanceList is changed");
       return true;
@@ -50,9 +33,6 @@ class AttendanceList extends Component {
     return false;
   }
   async getAttendanceData() {
-    this.setState({
-      refreshAttendaceList: !this.state.refreshAttendaceList
-    });
     const classroomId = this.state.classroomId;
     const classDate = this.state.classDate;
     await API.getAttendances(classroomId, classDate)
@@ -68,7 +48,6 @@ class AttendanceList extends Component {
 
   handleAttendanceData() {
     const updatedAttendanceList = this.state.attendanceList;
-
     this.props.onClassUpdate(updatedAttendanceList);
   }
 
@@ -79,20 +58,13 @@ class AttendanceList extends Component {
     await API.updateAttendanceToggle(attendanceId).catch(err =>
       console.log(err)
     );
-
-    this.setState({
-      refreshAttendaceList: !this.state.refreshAttendaceList
-    });
   }
 
   render() {
     return (
       <div>
         <p>Class date: {this.state.classDate}</p>
-        <p>
-          Checked In:{" "}
-          <CountStudents attendanceList={this.state.attendanceList} />
-        </p>
+
         <ToggleClass
           key={this.state.classroomId + "_" + this.state.classDate}
           classroomId={this.state.classroomId}
@@ -108,6 +80,7 @@ class AttendanceList extends Component {
                 attendanceId={attendance._id}
                 isPresent={attendance.isPresent}
                 onChange={this.changeStatus}
+                onUpdate={this.handleAttendanceData}
               />
             </li>
           ))}
