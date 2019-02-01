@@ -21,6 +21,7 @@ class TeacherAttendance extends Component {
 
     this.updateClassDate = this.updateClassDate.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.updateCurrentClass = this.updateCurrentClass.bind(this);
   }
 
   componentWillReceiveProps(props) {

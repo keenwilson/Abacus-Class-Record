@@ -22,6 +22,7 @@ class ToggleStudent extends Component {
         isPresent: this.state.isPresent
       };
       this.props.onChange(attendanceData);
+      this.props.onUpdate();
     }, 300);
   }
 

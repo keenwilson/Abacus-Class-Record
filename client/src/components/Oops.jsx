@@ -8,12 +8,12 @@ const Oops = () => {
       <Row>
         <Col size="md-12">
           <Jumbotron>
-            <h1 className="text-center">404 Page Not Found</h1>
-            <h1 className="text-center">
-              <span role="img" aria-label="Face With Rolling Eyes Emoji">
-                🙄
-              </span>
-            </h1>
+            <h1 className="text-center">Something’s missing!</h1>
+            <p className="text-center">Error Code 404</p>
+            <p className="text-center">
+              It looks like the page you’re looking for can’t be found… try
+              going back a page and choosing another option.
+            </p>
           </Jumbotron>
         </Col>
       </Row>
