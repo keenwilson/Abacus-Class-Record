@@ -6,7 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 class SelectDate extends Component {
   constructor(props) {
     super(props);
-    console.log("Date picker received props:", props);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
 
