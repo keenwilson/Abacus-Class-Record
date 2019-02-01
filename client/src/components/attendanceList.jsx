@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ToggleStudent from "./toggleStudent";
-import ToggleClass from "./toggleClass";
 import API from "../utils/API";
 
 class AttendanceList extends Component {
@@ -64,13 +63,6 @@ class AttendanceList extends Component {
     return (
       <div>
         <p>Class date: {this.state.classDate}</p>
-
-        <ToggleClass
-          key={this.state.classroomId + "_" + this.state.classDate}
-          classroomId={this.state.classroomId}
-          classDate={this.state.classDate}
-          attendanceList={this.state.attendanceList}
-        />
         <ul>
           {this.state.attendanceList.map((attendance, i) => (
             <li key={attendance._id + "_" + i} value={attendance._id}>

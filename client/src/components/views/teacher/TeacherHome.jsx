@@ -3,7 +3,7 @@ import ClassroomsCard from "../../classroomCard";
 
 class TeacherHome extends Component {
   constructor(props) {
-    const css = require('./assets/css/navbar.css').toString();
+    const css = require("./assets/css/navbar.css").toString();
 
     super(props);
     this.state = {

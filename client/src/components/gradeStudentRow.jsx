@@ -67,7 +67,6 @@ class GradeStudentRow extends Component {
               onClick={this.handleSubmit}
             >
               Submit
-              <i className="material-icons right">send</i>
             </button>
           </td>
         )}
