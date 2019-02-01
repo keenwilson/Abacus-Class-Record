@@ -22,17 +22,28 @@ class ToggleStudent extends Component {
         isPresent: this.state.isPresent
       };
       this.props.onChange(attendanceData);
-      this.props.onUpdate();
     }, 300);
   }
 
   render() {
     return (
-      <div className="switch">
-        <label>
-          <input type="checkbox"/>
-          <span className="lever"></span>
-        </label>
+      <div>
+        {this.state.isPresent && (
+          <div className="switch">
+            <label>
+              <input type="checkbox" checked onChange={this.handleClick} />
+              <span className="lever" />
+            </label>
+          </div>
+        )}
+        {!this.state.isPresent && (
+          <div className="switch">
+            <label>
+              <input type="checkbox" onChange={this.handleClick} />
+              <span className="lever" />
+            </label>
+          </div>
+        )}
       </div>
     );
   }
