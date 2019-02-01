@@ -1,29 +1,86 @@
 .abacus-container {
-  padding: 25px 25px 0 25px;
+  display: flex;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  height: calc(100vh - 95px);
 
-  .row {
+  .abacus-flex-card {
+    background: #fff;
+    width: 300px;
+    margin: 25px 0 0 25px;
+    border-radius: 6px;
+    padding: 10px;
+    max-height: calc(100vh - 175px);
+    overflow-y: scroll;
+    box-sizing: content-box;
 
-    .col {
-      padding: 0;
+    .card-action {
+      padding: 20px 25px 20px 20px;
 
+      button {
+        width: 90%;
+        margin: 0 0 0 0;
+        background: #E6877C;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        transition: .5s;
 
-      .card-wrapper {
-        overflow-x: hidden;
-        overflow-y: scroll;
-        max-height: 82vh;
-        padding: 0;
-
-        .card {
-          margin: 0;
-
-          &::-webkit-scrollbar {
-            display: none;
-          }
-
-          .card-content {
-            height: 100%;
-          }
+        &:hover {
+          background: darken(#E6877C, 15%);
+          cursor: pointer;
+          transition: .5s;
         }
+      }
+
+      ul li a {
+        color: #31657D !important;
+
+        &:hover {
+          color: lighten(#31657D, 30%) !important;
+        }
+      }
+    }
+  }
+
+  .add-class {
+    height: 100px;
+    padding: 0;
+    text-align: center;
+    background: rgba(255, 255, 255, .35);
+    overflow: hidden !important;
+    transition: .5s;
+
+    a {
+      color: #455a64;
+    }
+
+    .card-content {
+      padding: 12px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    i {
+      font-size: 36px;
+      padding: 10px;
+      margin: 0;
+      color: #455a64;
+      transition: .5s;
+    }
+
+    &:hover {
+      transform: scale(1.025);
+      cursor: pointer;
+      transition: .5s;
+
+      i {
+        color: lighten(#31657D, 20%);
+        transition: .5s;
       }
     }
   }

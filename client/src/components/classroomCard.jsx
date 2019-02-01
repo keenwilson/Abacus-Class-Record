@@ -29,45 +29,38 @@ class ClassroomsCard extends Component {
     const { classroom, students } = this.state;
 
     return (
-      <div className="col s12 m3">
-        <div className="card-wrapper">
-          <div className="card">
+        <div>
+          <div className="abacus-flex-card card">
             <div className="card-image">
               <img src={classroom.imagePath} alt={classroom.subject} />
             </div>
             <div className="card-content">
               <span className="card-title">Subject: {classroom.subject}</span>
-              <p>
-                <strong>Room:</strong> {classroom.roomNumber}
-              </p>
-
+              <p><strong>Room:</strong> {classroom.roomNumber}</p>
               <hr />
-              <p>
-                <strong>Students:</strong>
-              </p>
+              <p><strong>Students:</strong></p>
               <ul>
                 {students.map((student, i) => (
-                  <li key={i} value={student._id}>
-                    {student.firstName} {student.lastName}
-                  </li>
+                    <li key={i} value={student._id}>
+                      {student.firstName} {student.lastName}
+                    </li>
                 ))}
               </ul>
             </div>
             <div className="card-action">
               <button
-                key={this.state.classroom._id + "_" + this.state.isSelect}
-                onClick={this.handleClick}
-                className="browser-default"
+                  key={this.state.classroom._id + "_" + this.state.isSelect}
+                  onClick={this.handleClick}
+                  // className="browser-default"
               >
                 {this.state.isSelect
-                  ? "Close Actions"
-                  : "Select actions for this class"}
+                    ? "Close Actions"
+                    : "Select actions for this class"}
               </button>
               {this.state.isSelect && <SelectClassroom />}
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
