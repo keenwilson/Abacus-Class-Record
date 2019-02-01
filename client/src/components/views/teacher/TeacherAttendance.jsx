@@ -96,40 +96,24 @@ class TeacherAttendance extends Component {
               }
               onClick={this.handleClick}
             >
-              {this.state.showOverview
-                ? "Close Attendance Overview"
-                : "Show Attendance Overview"}
+              {this.state.showOverview ? "Close" : "Show Attendance Overview"}
             </button>
           </a>
 
-          {/* Modal */}
-          <div id="modal-class-overview" className="modal">
-            <div className="modal-content">
-              <h4>Classroom Overview</h4>
-              {this.state.showOverview && (
-                <AttendanceOverview
-                  key={
-                    this.state.classroomId +
-                    "_" +
-                    this.state.showOverview +
-                    "_" +
-                    this.state.classDate
-                  }
-                  showOverview={this.state.showOverview}
-                  attendanceList={this.state.attendanceList}
-                  classroomId={this.state.classroomId}
-                  classDate={this.state.classDate}
-                />
-              )}
-            </div>
-            <div className="modal-footer">
-              <a
-                href="#!"
-                className="modal-close waves-effect waves-green btn-flat"
-              >
-                Okay
-              </a>
-            </div>
+          <div className="abacus-flex-card card">
+            <AttendanceOverview
+              key={
+                this.state.classroomId +
+                "_" +
+                this.state.showOverview +
+                "_" +
+                this.state.classDate
+              }
+              showOverview={this.state.showOverview}
+              attendanceList={this.state.attendanceList}
+              classroomId={this.state.classroomId}
+              classDate={this.state.classDate}
+            />
           </div>
         </div>
         {/* // END // */}
