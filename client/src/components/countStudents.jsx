@@ -7,7 +7,6 @@ function CountStudents(props) {
   for (let i = 0; i < attendanceList.length; i++) {
     if (attendanceList[i].isPresent === true) {
       studentsPresent++;
-      console.log(studentsPresent, attendanceList[i].studentId.firstName);
     }
   }
 

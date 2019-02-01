@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import GradeStudentRow from "./gradeStudentRow";
+import API from "../utils/API";
 
 class GradesCard extends Component {
   constructor(props) {
