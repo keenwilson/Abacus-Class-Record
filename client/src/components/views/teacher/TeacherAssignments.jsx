@@ -4,7 +4,7 @@ import API from "../../../utils/API";
 
 class TeacherAssignments extends Component {
   constructor(props) {
-    const css = require("./assets/css/assignments.css").toString();
+    const css = require('./assets/css/home.css').toString();
 
     super(props);
     console.log("assignments", props);
@@ -52,25 +52,21 @@ class TeacherAssignments extends Component {
     return (
       <React.Fragment>
         <style>${this.css}</style>
-
         <div className="abacus-container">
-          <div className="row">{this.state.classroom.subject}</div>
-          <div className="row">
-            {this.state.assignments &&
-              this.state.assignments.map((item, i) => (
-                <AssignmentCard
-                  key={item._id}
-                  assignmentId={item._id}
-                  assignmentName={item.assignmentName}
-                  assignmentType={item.assignmentType}
-                  assignmentDesc={item.assignmentDesc}
-                  maxScore={item.maxScore}
-                  dueDate={item.dueDate}
-                  value={item._id}
-                  onClick={this.handleClick}
-                />
+          {this.state.assignments &&
+            this.state.assignments.map((item, i) => (
+              <AssignmentCard
+                key={item._id}
+                assignmentId={item._id}
+                assignmentName={item.assignmentName}
+                assignmentType={item.assignmentType}
+                assignmentDesc={item.assignmentDesc}
+                maxScore={item.maxScore}
+                dueDate={item.dueDate}
+                value={item._id}
+                onClick={this.handleClick}
+              />
               ))}
-          </div>
         </div>
       </React.Fragment>
     );

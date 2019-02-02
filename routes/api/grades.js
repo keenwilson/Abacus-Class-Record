@@ -1,17 +1,22 @@
 const Classroom = require("../../models/classroom");
-
 const mongoose = require("mongoose");
 const Grade = mongoose.model("Grade");
 const express = require("express");
 const router = express.Router();
 
-//Find all grades with gradeId
+//Find grade with gradeId
 router.get("/:id", async (req, res) => {
-  const grade = await Grade.findById(req.params.id, async function(err, found) {
-    console.log("Find grade by id", found);
-  });
-
-  if (!Grade)
+  const grade = await Grade.findById(req.params.id)
+    .populate({
+      path: "studentId"
+    })
+    .populate({
+      path: "assignmentId"
+    })
+    .populate({
+      path: "classroomId"
+    });
+  if (!grade)
     return res.status(404).send("The Grade with the given ID was not found.");
 
   res.send(grade);
@@ -120,26 +125,7 @@ router.delete("/:id", async (req, res) => {
     .populate({
       path: "classroomId"
     });
-  if (!Grade)
-    return res.status(404).send("The Grade with the given ID was not found.");
-
-  res.send(grade);
-});
-
-//Find grade with gradeId
-router.get("/:id", async (req, res) => {
-  const grade = await Grade.findById(req.params.id)
-    .select("-__v")
-    .populate({
-      path: "studentId"
-    })
-    .populate({
-      path: "assignmentId"
-    })
-    .populate({
-      path: "classroomId"
-    });
-  if (!Grade)
+  if (!grade)
     return res.status(404).send("The Grade with the given ID was not found.");
 
   res.send(grade);
