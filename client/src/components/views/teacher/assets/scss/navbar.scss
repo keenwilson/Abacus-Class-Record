@@ -1,5 +1,6 @@
-body {
-  background: url('../../../../assets/images/teachers-background.jpg') center center no-repeat;
+.app-background {
+  background: url("../../../../assets/images/teachers-background.jpg") center
+    center no-repeat;
   background-position-y: bottom;
   background-attachment: fixed;
   height: 100vh;
@@ -8,18 +9,18 @@ body {
 nav {
   height: 95px;
   line-height: 95px;
-  border-bottom: 5px solid #E6877C;
+  border-bottom: 5px solid #e6877c;
   font-family: Futura, sans-serif;
   background-color: transparent;
 
   .nav-wrapper {
-    background: rgba(225, 225, 225, .75);
+    background: rgba(225, 225, 225, 0.75);
 
     .fa-bars {
-      margin: 13px 0 0 20px
+      margin: 13px 0 0 20px;
     }
 
-    .brand-logo  {
+    .brand-logo {
       line-height: 14px;
 
       font-size: 1.5rem;
@@ -46,24 +47,26 @@ nav {
       li {
         padding: 0 15px;
 
-        .fa, .far, .fal {
+        .fa,
+        .far,
+        .fal {
           margin-top: 15px;
 
           @media screen and (max-width: 600px) {
-            margin:0 10px 0 0;
+            margin: 0 10px 0 0;
           }
         }
 
         .fa-bullhorn {
-          color: #E6877C;
+          color: #e6877c;
         }
 
         .fa-file-alt {
-          color: #31657D;
+          color: #31657d;
         }
 
         .fa-book {
-          color: #799FB0;
+          color: #799fb0;
         }
 
         select {

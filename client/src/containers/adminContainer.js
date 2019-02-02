@@ -11,7 +11,7 @@ class AdminContainer extends Component {
   state = {};
   render() {
     return (
-      <div>
+      <div className="app-background">
         <h1>This is admin container</h1>
         <AdminNav />
         <Switch>

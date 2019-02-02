@@ -72,7 +72,7 @@ class TeacherContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app-background">
         <TeacherNav
           classrooms={this.state.classrooms}
           classroom={this.state.currentClassroom}
