@@ -5,7 +5,7 @@ const css = require("./assets/css/home.css").toString();
 
 const Home = ({ user }) => {
   return (
-    <div>
+    <div className="homepage">
       <style>${css}</style>
       <nav>
         <div className="nav-wrapper">
@@ -20,14 +20,16 @@ const Home = ({ user }) => {
               <React.Fragment>
                 <li>
                   <Link to="/register">
+                    <div className="btn waves-effect waves-light transparent">
                       Sign Up
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link to="/login">
-                    <a href="#!" className="btn waves-effect waves-light">
+                    <div className="btn waves-effect waves-light transparent">
                       Login
-                    </a>
+                    </div>
                   </Link>
                 </li>
               </React.Fragment>
@@ -92,10 +94,10 @@ const Home = ({ user }) => {
               </div>
               <div className="card-content">
                 <div>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Aliquam assumenda beatae corporis delectus, deleniti ducimus
-                  ea enim exercitationem expedita facere labore libero magnam
-                  qui quisquam sapiente velit veniam veritatis voluptate?
+                  Abacus gives you one place, a reliable database, to digitally
+                  track all of your critical information, clearly visualize your
+                  analytics, and get at-a-glance insights into what's going on
+                  in your classes.
                 </div>
               </div>
               <div className="card-action">
@@ -115,8 +117,8 @@ const Home = ({ user }) => {
                 <div>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Aliquam assumenda beatae corporis delectus, deleniti ducimus
-                  ea enim exercitationem expedita facere labore libero magnam
-                  qui quisquam sapiente velit veniam veritatis voluptate?
+                  ea enim exercitationem expedita facere labore libero velit
+                  veniam veritatis voluptate?
                 </div>
               </div>
               <div className="card-action">
@@ -136,8 +138,8 @@ const Home = ({ user }) => {
                 <div>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Aliquam assumenda beatae corporis delectus, deleniti ducimus
-                  ea enim exercitationem expedita facere labore libero magnam
-                  qui quisquam sapiente velit veniam veritatis voluptate?
+                  ea enim facere labore libero magnam qui quisquam sapiente
+                  velit veniam veritatis voluptate?
                 </div>
               </div>
               <div className="card-action">
@@ -158,18 +160,21 @@ const Home = ({ user }) => {
               atque consequuntur enim eos facere incidunt laborum perferendis
               tempora totam voluptatibus. Amet atque consectetur eaque est et in
               ratione suscipit vitae.
+              <br />
             </div>
             <div>
               Doloribus eaque fuga illum nesciunt officiis praesentium quae
               quasi quibusdam totam ut? Ad, alias, distinctio eius eveniet, fuga
               harum ipsum iure labore molestiae odit quibusdam soluta temporibus
               vel! Molestias, temporibus!
+              <br />
             </div>
             <div>
               Magni minima quaerat quia quo reprehenderit. A adipisci aperiam
               beatae blanditiis cupiditate, facere harum, id impedit molestias
               neque nulla obcaecati perferendis possimus praesentium, rem
               repellendus similique sint soluta tempore ut.
+              <br />
             </div>
           </div>
           <div className="col s12 m4 placeholder-image">
@@ -185,16 +190,16 @@ const Home = ({ user }) => {
                 <React.Fragment>
                   <li>
                     <Link to="/register">
-                      <a href="#!" className="btn waves-effect waves-light">
+                      <div className="btn waves-effect waves-light transparent">
                         Sign Up
-                      </a>
+                      </div>
                     </Link>
                   </li>
                   <li>
                     <Link to="/login">
-                      <a href="#!" className="btn waves-effect waves-light">
+                      <div className="btn waves-effect waves-light transparent">
                         Login
-                      </a>
+                      </div>
                     </Link>
                   </li>
                 </React.Fragment>
@@ -203,32 +208,23 @@ const Home = ({ user }) => {
                 <React.Fragment>
                   <li>
                     <Link to="/teacher">
-                      <a
-                        href="#!"
-                        className="btn waves-effect waves-light transparent"
-                      >
+                      <div className="btn waves-effect waves-light transparent">
                         View Teacher
-                      </a>
+                      </div>
                     </Link>
                   </li>
                   <li>
                     <Link to="/admin">
-                      <a
-                        href="#!"
-                        className="btn waves-effect waves-light transparent"
-                      >
+                      <div className="btn waves-effect waves-light transparent">
                         View Admin
-                      </a>
+                      </div>
                     </Link>
                   </li>
                   <li>
                     <Link to="/logout">
-                      <a
-                        href="#!"
-                        className="btn waves-effect waves-light transparent"
-                      >
+                      <div className="btn waves-effect waves-light transparent">
                         Logout
-                      </a>
+                      </div>
                     </Link>
                   </li>
                 </React.Fragment>
@@ -238,14 +234,15 @@ const Home = ({ user }) => {
           <div className="col s12 m4 center-align">
             <p className="card-title abacus-footer">
               {" "}
-              <i className="far fa-abacus" /><br/> Abacus
+              <i className="far fa-abacus" />
+              <br /> Abacus
             </p>
           </div>
           <div className="col s12 m4 right-align">
             <ul>
               <li>
                 <a
-                  href="#!"
+                  href="https://github.com/Kysper"
                   className="btn waves-effect waves-light transparent"
                 >
                   <i className="fab fa-github" /> Victor Adams
@@ -253,7 +250,7 @@ const Home = ({ user }) => {
               </li>
               <li>
                 <a
-                  href="#!"
+                  href="https://github.com/reedkroh"
                   className="btn waves-effect waves-light transparent"
                 >
                   <i className="fab fa-github" /> Reed Kroh
@@ -261,7 +258,8 @@ const Home = ({ user }) => {
               </li>
               <li>
                 <a
-                  href="#!"
+                  href="https://github.com/andrewulm"
+                  target="_blank"
                   className="btn waves-effect waves-light transparent"
                 >
                   <i className="fab fa-github" /> Andrew Ulm
@@ -269,7 +267,7 @@ const Home = ({ user }) => {
               </li>
               <li>
                 <a
-                  href="#!"
+                  href="https://github.com/keenwilson"
                   className="btn waves-effect waves-light transparent"
                 >
                   <i className="fab fa-github" /> Keen Wilson

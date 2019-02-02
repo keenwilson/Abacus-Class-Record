@@ -1,4 +1,4 @@
-nav {
+.homepage nav {
   height: 95px;
   line-height: 95px;
   border-bottom: 5px solid #e6877c;
@@ -6,26 +6,26 @@ nav {
   background-color: transparent;
 }
 
-.nav-wrapper {
+.homepage .nav-wrapper {
   background: rgba(225, 225, 225, 0.75);
   background: rgba(225, 225, 225, 0.75);
 }
 
-nav .brand-logo {
+.homepage nav .brand-logo {
   color: #343434;
 }
 
-nav .brand-logo i {
+.homepage nav .brand-logo i {
   font-size: 36px;
   margin: 15px 10px 0 25px;
 }
 
-nav ul a,
-nav ul a button {
+.homepage nav ul a,
+.homepage nav ul a button {
   font-family: Futura, sans-serif;
 }
 
-nav ul a {
+.homepage nav ul a {
   color: #343434;
 }
 
@@ -64,7 +64,7 @@ nav ul a {
   margin: 0;
 }
 
-.card-image {
+.homepage .card-image {
   padding: 20px;
   height: 175px;
 }
@@ -81,12 +81,12 @@ nav ul a {
   background: #799fb0;
 }
 
-.card-image i {
+.homepage .card-image i {
   font-size: 72px;
   color: #fff;
 }
 
-h6 {
+.homepage h6 {
   text-align: center;
 }
 
