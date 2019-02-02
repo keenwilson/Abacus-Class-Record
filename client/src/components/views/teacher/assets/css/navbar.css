@@ -40,7 +40,7 @@ nav .nav-wrapper ul {
   padding-left: 20px;
 }
 nav .nav-wrapper ul li {
-  padding: 0 15px;
+  padding: 0 5px;
 }
 nav .nav-wrapper ul li .fa,
 nav .nav-wrapper ul li .far,
@@ -85,4 +85,8 @@ nav .nav-wrapper .fa-bars {
 }
 .sidenav li > a > i {
   float: none;
+}
+
+nav .nav-wrapper .brand-logo .fa-abacus {
+  margin-top: 0;
 }
