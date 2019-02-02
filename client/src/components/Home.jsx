@@ -10,7 +10,7 @@ const Home = ({ user }) => {
       <nav>
         <div className="nav-wrapper">
           <a href="#!" className="brand-logo">
-            <i className="far fa-abacus" /> Abacus
+            <i className="far fa-abacus" /> <span>Abacus</span>
           </a>
           <a href="#" data-target="mobile-demo" className="sidenav-trigger">
             <i className="fa fa-bars" />
@@ -20,9 +20,7 @@ const Home = ({ user }) => {
               <React.Fragment>
                 <li>
                   <Link to="/register">
-                    <a href="#!" className="btn waves-effect waves-light">
                       Sign Up
-                    </a>
                   </Link>
                 </li>
                 <li>
@@ -174,13 +172,13 @@ const Home = ({ user }) => {
               repellendus similique sint soluta tempore ut.
             </div>
           </div>
-          <div className="col s12 m4">
+          <div className="col s12 m4 placeholder-image">
             <img src="https://i.imgur.com/s8mEukX.jpg" alt="Tables" />
           </div>
         </div>
       </div>
       <div className="section grey darken-3">
-        <div className="row container white-text">
+        <div className="row container white-text abacus-footer-links">
           <div className="col s12 m4 left-align">
             <ul>
               {!user && (
@@ -238,9 +236,9 @@ const Home = ({ user }) => {
             </ul>
           </div>
           <div className="col s12 m4 center-align">
-            <p className="card-title">
+            <p className="card-title abacus-footer">
               {" "}
-              <i className="far fa-abacus" /> Abacus Inc.
+              <i className="far fa-abacus" /><br/> Abacus
             </p>
           </div>
           <div className="col s12 m4 right-align">
