@@ -7,12 +7,37 @@ const Classroom = require("../../models/classroom");
 const Student = require("../../models/student");
 const moment = require("moment");
 
+// See all assignments in that class
+router.get("/:classroomId", async (req, res) => {
+  const assignment = await Assignment.find({
+    classroomId: req.params.classroomId
+  })
+    .select("-__v")
+    .populate({
+      path: "classroomId"
+    });
+
+  res.send(assignment);
+});
+
+router.get("/assignment/:id", async (req, res) => {
+  const assignment = await Assignment.findById(req.params.id)
+    .select("-__v")
+    .populate({
+      path: "classroomId"
+    })
+    .sort("");
+  res.send(assignment);
+});
+
 // Create an assignment
 router.post("/", async (req, res) => {
-  const dueDate = req.body.dueDate;
-  const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
-  const newDueDate = parsedDueDate.toDate();
-  console.log("newDueDate", newDueDate);
+  try {
+    const dueDate = req.body.dueDate;
+    const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
+    const newDueDate = parsedDueDate.toDate();
+    console.log("newDueDate", newDueDate);
+  } catch (error) {}
 
   Classroom.findById(req.body.classroomId, async function(err, classroom) {
     const currentClassroomId = classroom._id;
@@ -48,26 +73,14 @@ router.post("/", async (req, res) => {
   });
 });
 
-// See all assignments in that class
-router.get("/:id", async (req, res) => {
-  const assignment = await Assignment.find({
-    classroomId: req.params.id
-  })
-    .select("-__v")
-    .sort("dueDate")
-    .populate({
-      path: "classroomId"
-    });
-
-  res.send(assignment);
-});
-
 // Update the assignment with assignmentId
 router.put("/:id", async (req, res) => {
-  const dueDate = req.body.dueDate;
-  const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
-  const newDueDate = parsedDueDate.toDate();
-  console.log("newDueDate", newDueDate);
+  try {
+    const dueDate = req.body.dueDate;
+    const parsedDueDate = moment(dueDate, "YYYY-MM-DD");
+    const newDueDate = parsedDueDate.toDate();
+    console.log("newDueDate", newDueDate);
+  } catch (error) {}
 
   const assignment = await assignment.findByIdAndUpdate(
     req.params.id,
@@ -101,7 +114,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const assignment = await Assignment.findByIdAndRemove(req.params.id);
+  const assignment = await Assignment.findById(req.params.id);
   if (!assignment)
     return res
       .status(404)
