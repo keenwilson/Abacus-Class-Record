@@ -14,6 +14,24 @@ A working version of the application can be found at [https://react-abacus.herok
 
 ---
 
+## How This App Works
+
+### Display all the classrooms in the database
+![Get all classrooms](https://i.imgur.com/VJSc88c.png)
+
+### Check in students and display attendance overview
+![Attendance ](https://i.imgur.com/XrXYy1u.png)
+
+### Filter assignments by type and add files to each assignment
+![Assignments ](https://i.imgur.com/ljDmlxf.png)
+
+### Add grades by assignment
+![Grades ](https://i.imgur.com/6yAC6qp.png)
+
+
+
+---
+
 ## Technologies used
 
 ### Front-End
