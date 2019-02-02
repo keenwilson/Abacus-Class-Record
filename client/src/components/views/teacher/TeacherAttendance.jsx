@@ -125,7 +125,6 @@ class TeacherAttendance extends Component {
               </div>
             </div>
           </div>
-        </div>
         {/* // END // */}
 
         {/* Attendance Cards */}
