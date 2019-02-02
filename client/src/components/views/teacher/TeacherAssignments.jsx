@@ -85,8 +85,13 @@ class TeacherAssignments extends Component {
       <React.Fragment>
         <style>${this.css}</style>
         <div className="row top-bar">
-          <div className="container">
-            <input type="text" placeholder="Filter Assignments by Category"/>
+          <div className="container filter-container">
+            {/* <input type="text" placeholder="Filter Assignments by Category" /> */}
+            <SelectTypes
+              items={this.state.assignmentTypes}
+              selectedItem={this.state.selectedItem}
+              onItemSelect={this.handleTypeSelect}
+            />
           </div>
         </div>
         <div className="abacus-container abacus-assignments">

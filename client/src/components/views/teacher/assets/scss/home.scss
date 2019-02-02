@@ -17,6 +17,7 @@
   overflow-x: auto;
   flex-wrap: nowrap;
   height: calc(100vh - 95px);
+  clear: both;
 
   .abacus-flex-card {
     background: #fff;
@@ -62,8 +63,8 @@
     height: 100px;
     padding: 0;
     text-align: center;
-    background: rgba(255, 255, 255, .35);
-    transition: .5s;
+    background: rgba(255, 255, 255, 0.35);
+    transition: 0.5s;
     width: 310px;
     margin: 25px;
 
@@ -102,9 +103,9 @@
 }
 
 .top-bar {
-  background: rgba(121,159,176,.75);
+  background: rgba(121, 159, 176, 0.75);
   color: #fff;
-  box-shadow: 0 4px 2px -4px rgba(0,0,0,.50);
+  box-shadow: 0 4px 2px -4px rgba(0, 0, 0, 0.5);
   height: 54px;
   margin-bottom: 0;
 
@@ -125,7 +126,7 @@
     text-align: center;
 
     span {
-      color: darken(#31657D, 10%);
+      color: darken(#31657d, 10%);
     }
   }
 }
