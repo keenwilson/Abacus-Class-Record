@@ -1,3 +1,17 @@
+.filter-container {
+  display: flex;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  height: auto;
+  .filter-flex-card {
+    background: #fff;
+    width: 300px;
+    margin: 25px 0 0 25px;
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: content-box;
+  }
+}
 .abacus-container {
   display: flex;
   overflow-x: auto;
@@ -20,25 +34,25 @@
       button {
         width: 90%;
         margin: 0 0 0 0;
-        background: #E6877C;
+        background: #e6877c;
         color: #fff;
         padding: 10px 15px;
         border: none;
         border-radius: 6px;
-        transition: .5s;
+        transition: 0.5s;
 
         &:hover {
-          background: darken(#E6877C, 15%);
+          background: darken(#e6877c, 15%);
           cursor: pointer;
-          transition: .5s;
+          transition: 0.5s;
         }
       }
 
       ul li a {
-        color: #31657D !important;
+        color: #31657d !important;
 
         &:hover {
-          color: lighten(#31657D, 30%) !important;
+          color: lighten(#31657d, 30%) !important;
         }
       }
     }
@@ -48,9 +62,9 @@
     height: 100px;
     padding: 0;
     text-align: center;
-    background: rgba(255, 255, 255, .35);
+    background: rgba(255, 255, 255, 0.35);
     overflow: hidden !important;
-    transition: .5s;
+    transition: 0.5s;
 
     a {
       color: #455a64;
@@ -70,17 +84,17 @@
       padding: 10px;
       margin: 0;
       color: #455a64;
-      transition: .5s;
+      transition: 0.5s;
     }
 
     &:hover {
       transform: scale(1.025);
       cursor: pointer;
-      transition: .5s;
+      transition: 0.5s;
 
       i {
-        color: lighten(#31657D, 20%);
-        transition: .5s;
+        color: lighten(#31657d, 20%);
+        transition: 0.5s;
       }
     }
   }

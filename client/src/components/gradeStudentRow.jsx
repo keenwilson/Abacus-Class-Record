@@ -3,7 +3,6 @@ import API from "../utils/API";
 
 class GradeStudentRow extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       studentName: props.studentName,
@@ -28,7 +27,6 @@ class GradeStudentRow extends Component {
     this.setState({
       currentGrade: gradeInput
     });
-    console.log(this.state.currentGrade);
   }
 
   handleSubmit() {
