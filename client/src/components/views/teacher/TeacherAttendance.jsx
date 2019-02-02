@@ -77,7 +77,6 @@ class TeacherAttendance extends Component {
     );
   }
   render() {
-    // const studentsAttendance = this.state.attendanceList;
     return (
       <div>
         <style>${this.css}</style>

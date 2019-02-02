@@ -35,13 +35,16 @@ class TeacherGrades extends Component {
   }
 
   render() {
+    const { length: count } = this.state.assignments;
+    if (count === 0) return <p>There are no grades in the database.</p>;
     return (
       <div>
         <style>${this.css}</style>
         {this.state.assignments && (
           <div>
             <p>
-              Show Grades of Each Assignemnt in {this.state.classroom.subject}
+              Show grades of {count} assignemnt in{" "}
+              {this.state.classroom.subject}
             </p>
             <div className="row">
               {this.state.assignments &&
