@@ -36,6 +36,8 @@ class TeacherGrades extends Component {
   }
 
   render() {
+    const { length: count } = this.state.assignments;
+    if (count === 0) return <p>There are no grades in the database.</p>;
     return (
       <div>
         <style>${this.css}</style>

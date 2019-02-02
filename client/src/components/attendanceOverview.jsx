@@ -7,7 +7,7 @@ import API from "../utils/API";
 class AttendanceOverview extends Component {
   constructor(props) {
     super(props);
-    console.log("AttendanceOverview Props", props);
+
     this.state = {
       attendanceList: props.attendanceList,
       showOverview: props.showOverview,
@@ -45,7 +45,6 @@ class AttendanceOverview extends Component {
 
     await API.getAttendances(classroomId, previousDay)
       .then(res => {
-        console.log(res.data);
         this.setState({
           attendanceListpreviousDay: res.data,
           previousDay: previousDay
@@ -74,7 +73,6 @@ class AttendanceOverview extends Component {
     const classroomId = this.state.classroomId;
     await API.getAttendances(classroomId, previousThreeDays)
       .then(res => {
-        console.log(res.data);
         this.setState({
           attendanceListpreviousThreeDays: res.data,
           previousThreeDays: previousThreeDays
@@ -87,9 +85,11 @@ class AttendanceOverview extends Component {
     return (
       <div>
         {this.state.showOverview && (
-          <div>
-            <p>Attendance Overview</p>
-            <p>Class stats in the last three days.</p>
+          <div className="card-content">
+            <div className="card-title">
+              <p>Attendance Overview</p>
+              <p>Class stats in the last three days.</p>
+            </div>
             <table>
               <thead>
                 <tr>
@@ -101,7 +101,7 @@ class AttendanceOverview extends Component {
               <tbody>
                 <tr>
                   <td>{this.state.previousDay}</td>
-                  <td>
+                  <td className="center-align">
                     <CountStudents
                       attendanceList={this.state.attendanceListpreviousDay}
                     />
@@ -114,7 +114,7 @@ class AttendanceOverview extends Component {
                 </tr>
                 <tr>
                   <td>{this.state.previousTwoDays}</td>
-                  <td>
+                  <td className="center-align">
                     <CountStudents
                       attendanceList={this.state.attendanceListpreviousTwoDays}
                     />
@@ -127,7 +127,7 @@ class AttendanceOverview extends Component {
                 </tr>
                 <tr>
                   <td>{this.state.previousThreeDays}</td>
-                  <td>
+                  <td className="center-align">
                     <CountStudents
                       attendanceList={
                         this.state.attendanceListpreviousThreeDays
@@ -146,26 +146,6 @@ class AttendanceOverview extends Component {
             </table>
           </div>
         )}
-        <ul className="overview" id="attendance-overview">
-          <li>Attendance</li>
-          <li>Overview</li>
-          <li>Hey!</li>
-          <li>Have fun!</li>
-          <li>
-            There are{" "}
-            <CountStudents
-              key={
-                this.state.classroomId +
-                "_" +
-                this.state.classDate +
-                "_" +
-                this.state.showOverview
-              }
-              attendanceList={this.state.attendanceList}
-            />{" "}
-            students checked in.
-          </li>
-        </ul>
       </div>
     );
   }

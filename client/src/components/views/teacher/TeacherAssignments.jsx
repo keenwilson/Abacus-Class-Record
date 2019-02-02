@@ -1,16 +1,26 @@
 import React, { Component } from "react";
 import AssignmentCard from "../../assignmentCard";
 import API from "../../../utils/API";
+import SelectTypes from "../../selectTypes";
+import _ from "lodash";
 
 class TeacherAssignments extends Component {
   constructor(props) {
-    const css = require('./assets/css/home.css').toString();
+    const css = require("./assets/css/home.css").toString();
 
     super(props);
     console.log("assignments", props);
     this.state = {
       classroom: props.classroom,
-
+      assignmentTypes: [
+        "Paper",
+        "Homework",
+        "Quiz",
+        "Classwork",
+        "Project",
+        "Journal"
+      ],
+      selectedType: null,
       assignments: []
     };
     this.getAssignmentData = this.getAssignmentData.bind(this);
@@ -48,7 +58,29 @@ class TeacherAssignments extends Component {
     console.log("Assignment with this id is clicked:", assignmentId);
   }
 
+  handleTypeSelect = assignmentType => {
+    if (assignmentType === "all") {
+      this.setState({ selectedType: null });
+    } else {
+      this.setState({ selectedType: assignmentType });
+    }
+  };
+
+  getDisplayData = () => {
+    const { selectedType, assignments: allAssignments } = this.state;
+
+    let filtered = allAssignments;
+    if (selectedType)
+      filtered = allAssignments.filter(a => a.assignmentType === selectedType);
+
+    const sorted = _.orderBy(filtered, "assignmentName", "asc");
+
+    return { totalCount: filtered.length, assignments: sorted };
+  };
   render() {
+    const { length: count } = this.state.assignments;
+    if (count === 0) return <p>There are no assignments in the database.</p>;
+    const { totalCount, assignments } = this.getDisplayData();
     return (
       <React.Fragment>
         <style>${this.css}</style>
@@ -59,7 +91,7 @@ class TeacherAssignments extends Component {
         </div>
         <div className="abacus-container abacus-assignments">
           {this.state.assignments &&
-            this.state.assignments.map((item, i) => (
+            assignments.map((item, i) => (
               <AssignmentCard
                 key={item._id}
                 assignmentId={item._id}
@@ -71,7 +103,7 @@ class TeacherAssignments extends Component {
                 value={item._id}
                 onClick={this.handleClick}
               />
-              ))}
+            ))}
         </div>
       </React.Fragment>
     );

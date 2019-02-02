@@ -11,7 +11,7 @@ class SelectDate extends Component {
 
   css() {
     var css = {
-      fontSize: '18px'
+      fontSize: "18px"
     };
     return css;
   }
@@ -32,7 +32,9 @@ class SelectDate extends Component {
   render() {
     return (
       <div className="form-group">
-        <label><i class="far fa-calendar-alt" style={this.css()}></i> Date:</label>
+        <label>
+          <i className="far fa-calendar-alt" style={this.css()} /> Date:
+        </label>
         <DatePicker
           onChange={this.handleDateChange}
           name="classDate"

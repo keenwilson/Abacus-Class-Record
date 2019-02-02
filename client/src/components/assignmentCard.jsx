@@ -28,16 +28,22 @@ class AssignmentCard extends Component {
         <style>${this.customcss}</style>
         <div className="abacus-flex-card card">
           <div className="card-content">
-            <div
-                onClick={this.handleClick}
-                value={this.state.assignmentId}
-            >
+            <div onClick={this.handleClick} value={this.state.assignmentId}>
               <div>
                 <span className="card-title">{this.state.assignmentName}</span>
                 <h6><strong>Type:</strong> {this.state.assignmentType}</h6>
                 <h6><strong>MaxScore:</strong> {this.state.maxScore}</h6>
                 <hr />
                 <p>Description: {this.state.assignmentDesc}</p>
+                {/* Add Class */}
+                <div className="card add-class">
+                  <a className="modal-trigger" href="#add-class-modal">
+                    <div className="card-content">
+                      <h3>Add Files</h3>
+                      <i className="fa fa-plus" />
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
