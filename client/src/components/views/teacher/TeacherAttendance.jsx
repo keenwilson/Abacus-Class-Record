@@ -60,71 +60,54 @@ class TeacherAttendance extends Component {
   }
 
   handleClick() {
-    this.setState(
-      prevState => ({
-        showOverview: !prevState.showOverview
-      }),
-      console.log(this.state.showOverview)
-    );
+    this.setState(prevState => ({
+      showOverview: !prevState.showOverview
+    }));
   }
 
   updateCurrentClass(updatedAttendanceList) {
-    this.setState(
-      {
-        attendanceList: updatedAttendanceList
-      },
-      console.log(this.state.attendanceList)
-    );
+    this.setState({
+      attendanceList: updatedAttendanceList
+    });
   }
   render() {
     return (
       <div>
         <style>${this.css}</style>
-          {/* Attendance Overview button and modal */}
-          <div className="row row-overview">
-            <a href="#modal-attendance-overview" class="modal-trigger">
-              <button
-                  className="waves-effect waves-light btn"
-                  key={
-                    this.state.classroomId +
-                    "_" +
-                    this.state.classDate +
-                    "_" +
-                    this.state.showOverview
-                  }
-                  onClick={this.handleClick}
-              >
-                {this.state.showOverview
-                    ? "Close Attendance Overview"
-                    : "Show Attendance Overview"}
-              </button>
-            </a>
+        {/* Attendance Overview button and modal */}
+        <div className="row row-overview">
+          <a href="#modal-attendance-overview" class="modal-trigger">
+            <button
+              className="waves-effect waves-light btn"
+              key={
+                this.state.classroomId +
+                "_" +
+                this.state.classDate +
+                "_" +
+                this.state.showOverview
+              }
+              onClick={this.handleClick}
+            >
+              {this.state.showOverview ? "Close" : "Show Attendance Overview"}
+            </button>
+          </a>
 
-            {/* Modal */}
-            <div id="modal-attendance-overview" className="modal">
-              <div className="modal-content">
-                <h4>Classroom Overview</h4>
-                {this.state.showOverview && (
-                    <AttendanceOverview
-                        key={
-                          this.state.classroomId +
-                          "_" +
-                          this.state.showOverview +
-                          "_" +
-                          this.state.classDate
-                        }
-                        showOverview={this.state.showOverview}
-                        attendanceList={this.state.attendanceList}
-                        classroomId={this.state.classroomId}
-                        classDate={this.state.classDate}
-                    />
-                )}
-              </div>
-              <div className="modal-footer">
-                <a href="#!" className="modal-close waves-effect waves-green btn-flat">Okay</a>
-              </div>
-            </div>
+          <div className="abacus-flex-card card">
+            <AttendanceOverview
+              key={
+                this.state.classroomId +
+                "_" +
+                this.state.showOverview +
+                "_" +
+                this.state.classDate
+              }
+              showOverview={this.state.showOverview}
+              attendanceList={this.state.attendanceList}
+              classroomId={this.state.classroomId}
+              classDate={this.state.classDate}
+            />
           </div>
+        </div>
         {/* // END // */}
 
         {/* Attendance Cards */}

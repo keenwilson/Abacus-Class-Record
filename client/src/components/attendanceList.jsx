@@ -73,24 +73,17 @@ class AttendanceList extends Component {
     const classroomId = this.state.classroomId;
     const classDate = this.state.classDate;
     if (status === true) {
-      console.log("Check in every one on class date:", classDate);
-      API.updateAttendancesCheckIn(classroomId, classDate)
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => console.log(err));
+      API.updateAttendancesCheckIn(classroomId, classDate).catch(err =>
+        console.log(err)
+      );
     } else {
-      console.log("Check out every one on class date:", classDate);
-      API.updateAttendancesCheckOut(classroomId, classDate)
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => console.log(err));
+      API.updateAttendancesCheckOut(classroomId, classDate).catch(err =>
+        console.log(err)
+      );
     }
   }
 
   checkInWholeClass(status) {
-    console.log("state class is checked in", status);
     this.setState({
       classIsPresent: status
     });
