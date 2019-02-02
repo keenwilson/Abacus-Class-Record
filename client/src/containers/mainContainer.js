@@ -20,7 +20,6 @@ class MainContainer extends Component {
 
   componentDidMount() {
     const user = authService.getCurrentUser();
-    console.log("Auth service is getting a current user");
     this.setState({ user });
   }
 
