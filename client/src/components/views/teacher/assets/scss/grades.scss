@@ -1,3 +1,14 @@
-html {
-  background: #fff;
+.abacus-grades {
+  max-height: calc(100vh - 150px);
+
+  .card-title {
+    color: #799FB0;
+    padding-bottom: 20px;
+  }
+
+  .row-overview {
+    position: fixed;
+    right: 0;
+  }
 }
+

@@ -52,7 +52,12 @@ class TeacherAssignments extends Component {
     return (
       <React.Fragment>
         <style>${this.css}</style>
-        <div className="abacus-container">
+        <div className="row top-bar">
+          <div className="container">
+            <input type="text" placeholder="Filter Assignments by Category"/>
+          </div>
+        </div>
+        <div className="abacus-container abacus-assignments">
           {this.state.assignments &&
             this.state.assignments.map((item, i) => (
               <AssignmentCard

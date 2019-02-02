@@ -84,7 +84,7 @@ class TeacherAttendance extends Component {
 
           {/* Attendance Overview button and modal */}
           <div className="row row-overview">
-            <a href="#modal-class-overview" class="modal-trigger">
+            <a href="#modal-attendance-overview" class="modal-trigger">
               <button
                   className="waves-effect waves-light btn"
                   key={
@@ -103,7 +103,7 @@ class TeacherAttendance extends Component {
             </a>
 
             {/* Modal */}
-            <div id="modal-class-overview" className="modal">
+            <div id="modal-attendance-overview" className="modal">
               <div className="modal-content">
                 <h4>Classroom Overview</h4>
                 {this.state.showOverview && (

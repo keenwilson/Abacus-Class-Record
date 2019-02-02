@@ -3,6 +3,8 @@ import React, { Component } from "react";
 class AssignmentCard extends Component {
   constructor(props) {
     const css = require('../components/views/teacher/assets/css/home.css').toString();
+    const customcss = require('../components/views/teacher/assets/css/assignments.css');
+
     super(props);
     this.state = {
       assignmentId: props.assignmentId,
@@ -23,6 +25,7 @@ class AssignmentCard extends Component {
     return (
       <div>
         <style>${this.css}</style>
+        <style>${this.customcss}</style>
         <div className="abacus-flex-card card">
           <div className="card-content">
             <div
@@ -31,17 +34,10 @@ class AssignmentCard extends Component {
             >
               <div>
                 <span className="card-title">{this.state.assignmentName}</span>
-                <p>
-                  <strong>Type:</strong> {this.state.assignmentType}
-                </p>
-
+                <h6><strong>Type:</strong> {this.state.assignmentType}</h6>
+                <h6><strong>MaxScore:</strong> {this.state.maxScore}</h6>
                 <hr />
-                <p>
-                  <strong>Description:</strong> {this.state.assignmentDesc}
-                </p>
-                <p>
-                  <strong>MaxScore:</strong> {this.state.maxScore}
-                </p>
+                <p>Description: {this.state.assignmentDesc}</p>
               </div>
             </div>
           </div>

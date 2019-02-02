@@ -51,7 +51,7 @@ class TeacherHome extends Component {
           {/* // END // */}
 
           {/* Add Class */}
-          <div className="abacus-flex-card card add-class">
+          <div className="add-class">
             <a className="modal-trigger" href="#add-class-modal">
               <div className="card-content">
                 <h3>Add Class</h3>
