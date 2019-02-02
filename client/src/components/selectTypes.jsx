@@ -19,16 +19,18 @@ class SelectTypes extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="input-field">
-          <select onChange={this.handleSelect} className="browser-default">
-            <option value="all">Choose Assignment Type</option>
-            {this.state.items.map((item, i) => (
-              <option key={i} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          name="filterType"
+          onChange={this.handleSelect}
+          className="filter-types center"
+        >
+          <option value="all">Filter by Type</option>
+          {this.state.items.map((item, i) => (
+            <option key={i} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
       </React.Fragment>
     );
   }
