@@ -9,40 +9,40 @@
 }
 
 .login-header {
-    padding: 40px 0 20px;
     text-align: center;
 }
 
 .login-header i {
+    padding-top: 40px;
     font-size: 5rem;
     color: #494949;
     text-shadow: 0 0 2px #494949;
 }
 
 .login-header h1 {
-    padding: 20px;
     font-weight: 900;
     font-size: 3rem;
     text-transform: uppercase;
     color: #fff;
     text-shadow: 0 0 5px #494949;
+    margin: 5px 0;
 }
 
 .login-form {
     background: #fff;
     border-radius: 12px;
-    padding: 20px;
     box-shadow: 0 0 10px 3px #494949;
     border-bottom: 5px solid #B3E3D8;
     color: #494949;
+    padding: 20px !important;
 }
 
 .login-form .form-group label {
     background: #B3E3D8;
     position: relative;
     padding: 5px 10px;
-    top: 25px;
-    left: 20px;
+    top:5px;
+    left: 10px;
     color: #fff;
     font-size: .8rem;
 }
@@ -61,7 +61,6 @@
     border: none;
     background: #E6877C;
     color: #fff;
-    padding: 15px 25px;
     text-transform: uppercase;
     font-weight: 900;
     width: 100%;
