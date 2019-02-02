@@ -1,1 +1,88 @@
-body{background:url("../../../../assets/images/teachers-background.jpg") center center no-repeat;background-position-y:bottom;background-attachment:fixed;height:100vh}nav{height:95px;line-height:95px;border-bottom:5px solid #E6877C;font-family:Futura, sans-serif;background-color:transparent}nav .nav-wrapper{background:rgba(225,225,225,0.75)}nav .nav-wrapper .fa-bars{margin:13px 0 0 20px}nav .nav-wrapper .brand-logo{line-height:14px;font-size:1.5rem;font-weight:700;text-transform:uppercase}nav .nav-wrapper .brand-logo a{color:#343434}nav .nav-wrapper .brand-logo .fa-abacus{font-size:3rem;margin-left:24px}@media screen and (max-width: 600px){nav .nav-wrapper .brand-logo{padding-top:10px}}nav .nav-wrapper ul{padding-left:20px}nav .nav-wrapper ul li{padding:0 15px}nav .nav-wrapper ul li .fa,nav .nav-wrapper ul li .far,nav .nav-wrapper ul li .fal{margin-top:15px}@media screen and (max-width: 600px){nav .nav-wrapper ul li .fa,nav .nav-wrapper ul li .far,nav .nav-wrapper ul li .fal{margin:0 10px 0 0}}nav .nav-wrapper ul li .fa-bullhorn{color:#E6877C}nav .nav-wrapper ul li .fa-file-alt{color:#31657D}nav .nav-wrapper ul li .fa-book{color:#799FB0}nav .nav-wrapper ul li select{margin:28px 20px 0 0;height:32px;width:275px;border-radius:6px}nav .nav-wrapper ul li a{color:#343434}@media screen and (max-width: 800px){nav .nav-wrapper ul{padding:10px 0 0 5px}nav .nav-wrapper ul li{padding:0 5px}}nav .nav-wrapper .fa-bars{color:#343434}.sidenav li>a>i{float:none}
+.app-background {
+  background: url("../../../../assets/images/teachers-background.jpg") center
+    center no-repeat;
+  background-position-y: bottom;
+  background-attachment: fixed;
+  height: 100vh;
+}
+nav {
+  height: 95px;
+  line-height: 95px;
+  border-bottom: 5px solid #e6877c;
+  font-family: Futura, sans-serif;
+  background-color: transparent;
+}
+nav .nav-wrapper {
+  background: rgba(225, 225, 225, 0.75);
+}
+nav .nav-wrapper .fa-bars {
+  margin: 13px 0 0 20px;
+}
+nav .nav-wrapper .brand-logo {
+  line-height: 14px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+nav .nav-wrapper .brand-logo a {
+  color: #343434;
+}
+nav .nav-wrapper .brand-logo .fa-abacus {
+  font-size: 3rem;
+  margin-left: 24px;
+}
+@media screen and (max-width: 600px) {
+  nav .nav-wrapper .brand-logo {
+    padding-top: 10px;
+  }
+}
+nav .nav-wrapper ul {
+  padding-left: 20px;
+}
+nav .nav-wrapper ul li {
+  padding: 0 15px;
+}
+nav .nav-wrapper ul li .fa,
+nav .nav-wrapper ul li .far,
+nav .nav-wrapper ul li .fal {
+  margin-top: 15px;
+}
+@media screen and (max-width: 600px) {
+  nav .nav-wrapper ul li .fa,
+  nav .nav-wrapper ul li .far,
+  nav .nav-wrapper ul li .fal {
+    margin: 0 10px 0 0;
+  }
+}
+nav .nav-wrapper ul li .fa-bullhorn {
+  color: #e6877c;
+}
+nav .nav-wrapper ul li .fa-file-alt {
+  color: #31657d;
+}
+nav .nav-wrapper ul li .fa-book {
+  color: #799fb0;
+}
+nav .nav-wrapper ul li select {
+  margin: 28px 20px 0 0;
+  height: 32px;
+  width: 275px;
+  border-radius: 6px;
+}
+nav .nav-wrapper ul li a {
+  color: #343434;
+}
+@media screen and (max-width: 800px) {
+  nav .nav-wrapper ul {
+    padding: 10px 0 0 5px;
+  }
+  nav .nav-wrapper ul li {
+    padding: 0 5px;
+  }
+}
+nav .nav-wrapper .fa-bars {
+  color: #343434;
+}
+.sidenav li > a > i {
+  float: none;
+}
