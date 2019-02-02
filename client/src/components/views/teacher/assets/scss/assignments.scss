@@ -1,3 +1,8 @@
-html {
-  color: #fff;
+.abacus-assignments {
+  max-height: calc(100vh - 150px);
+
+  .card-title {
+    color: #799FB0;
+    padding-bottom: 20px;
+  }
 }

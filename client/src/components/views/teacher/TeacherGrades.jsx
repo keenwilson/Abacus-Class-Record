@@ -4,7 +4,8 @@ import API from "../../../utils/API";
 
 class TeacherGrades extends Component {
   constructor(props) {
-    const css = require("./assets/css/grades.css").toString();
+    const css = require("./assets/css/home.css").toString();
+    const customcss = require('./assets/css/grades.css').toString();
 
     super(props);
     this.state = {
@@ -40,26 +41,24 @@ class TeacherGrades extends Component {
     return (
       <div>
         <style>${this.css}</style>
-        {this.state.assignments && (
-          <div>
-            <p>
-              Show grades of {count} assignemnt in{" "}
-              {this.state.classroom.subject}
-            </p>
-            <div className="row">
-              {this.state.assignments &&
-                this.state.assignments.map((item, i) => (
-                  <GradesCard
-                    key={item._id}
-                    assignment={item}
-                    value={item._id}
-                    assignmentId={item._id}
-                    classroomId={item.classroomId}
-                  />
-                ))}
-            </div>
+        <style>${this.customcss}</style>
+        <div className="row top-bar">
+          <div className="container">
+            <h6>Grade book for <span>{this.state.classroom.subject}</span></h6>
           </div>
-        )}
+        </div>
+        <div className="abacus-container abacus-grades">
+          {this.state.assignments &&
+            this.state.assignments.map((item, i) => (
+              <GradesCard
+                key={item._id}
+                assignment={item}
+                value={item._id}
+                assignmentId={item._id}
+                classroomId={item.classroomId}
+              />
+            ))}
+        </div>
       </div>
     );
   }
