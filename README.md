@@ -10,7 +10,7 @@ A working version of the application can be found at [https://react-abacus.herok
 
 - Teachers need one place, a reliable database, to digitally track all of their critical information.
 
-- Visualization allows teachers to see analytics presented visually and provide at-a-glance insights of what's going on in their class.es
+- Abacus aims to provide teachers with a way to clearly visualize their analytics and provide at-a-glance insights into what's going on in their classes.
 
 ---
 
@@ -27,8 +27,6 @@ A working version of the application can be found at [https://react-abacus.herok
 
 ### Add grades by assignment
 ![Grades ](https://i.imgur.com/6yAC6qp.png)
-
-
 
 ---
 
@@ -126,3 +124,14 @@ A working version of the application can be found at [https://react-abacus.herok
 | /api/grades                           | `POST`    | Create grade with a classroom id and an assignment id |
 | /api/grades/:grade_id                 | `PUT`     | Update grade with new info                            |
 | /api/grades/:grade_id                 | `DELETE`  | Delete grade                                          |
+
+---
+## Authors
+**Abacus Inc. Team Members**
+* [Victor Adams](https://kysper.github.io/)
+* [Reed Kroh](https://github.com/reedkroh)
+* [Andrew Ulm](https://github.com/andrewulm)
+* [Keen Wilson](https://keenwilson.com)
+
+_This product is part of the Full-Stack Web Development program at University of Kansas_
+
