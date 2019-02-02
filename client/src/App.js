@@ -6,13 +6,15 @@ class App extends Component {
     super(props);
     this.state = {
       user: ""
-    };
+    }
   }
+  
 
   render() {
     return (
       <React.Fragment>
         <MainContainer />
+        
       </React.Fragment>
     );
   }
