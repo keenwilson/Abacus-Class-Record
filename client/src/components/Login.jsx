@@ -44,22 +44,22 @@ class Login extends Form {
       <div className="login">
         <div className="container">
           <div className="row">
-            <div className="col-12 login-header">
+            <div className="col s12 login-header">
               <i className="far fa-abacus"></i>
               <h1>Abacus</h1>
             </div>
           </div>
           <div className="row">
-            <div className="col-6 mx-auto login-form">
+            <div className="col s6 offset-l3 login-form">
               <div className="row text-center">
-                <div className="col-6">
-                  <div className="ml-4 login-option">
+                <div className="col s6 center">
+                  <div className="login-option">
                     <i className="fas fa-chalkboard-teacher"></i>
                     <h5>Teacher</h5>
                   </div>
                 </div>
-                <div className="col-6">
-                  <div className="mr-4 login-option">
+                <div className="col s6 center">
+                  <div className="login-option">
                     <i className="fas fa-user-graduate"></i>
                     <h5>Student</h5>
                   </div>
@@ -71,10 +71,10 @@ class Login extends Form {
                 {this.renderInput("password", "Password", "password")}
                 <div className="form-group text-right">
                   <div className="row">
-                    <div className="col-9 need-account">
+                    <div className="col s9 need-account">
                       <span>No Account? <NavLink to="/register">Sign Up...</NavLink></span>
                     </div>
-                    <div className="col-3">
+                    <div className="col s3">
                       {this.renderButton("Login")}
                     </div>
                   </div>
